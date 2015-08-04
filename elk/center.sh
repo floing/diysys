@@ -8,6 +8,9 @@
 sudo apt-get install openjdk-7-jdk
 
 
+### 安装redis
+sudo apt-get install redis-server
+
 
 ### 安装elasticsearch
 # 导入GPG key
@@ -43,3 +46,14 @@ sudo apt-get update
 # 安装logstash
 sudo apt-get install logstash
  
+# 配置logstash[向/etc/logstash/conf.d/文件夹中添加配置文件]
+echo "logstash已经安装，下面对logstash进行配置!!!"
+sudo cp ./center.conf /etc/logstash/conf.d/
+
+# 启动elasticsearch
+sudo service elasticsearch restart
+
+# 设置elasticsearch开机启动,比elasticsearch启动快，关闭慢
+sudo update-rc.d elasticsearch defaults 94 11
+
+
