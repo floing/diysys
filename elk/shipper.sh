@@ -1,6 +1,8 @@
 #/bin/bash
 # codding: utf-8
 # Gmail: haojunyu2012
+# Description:	客户端配置
+
 
 
 ### 安装java
@@ -10,7 +12,6 @@ sudo apt-get install openjdk-7-jdk
 
 ### 安装redis
 sudo apt-get install redis-server
-
 
 
 ## 安装logstash
@@ -24,7 +25,9 @@ sudo apt-get update
 sudo apt-get install logstash
  
 # 配置logstash[向/etc/logstash/conf.d/文件夹中添加配置文件]
+echo "===="
 echo "logstash已经安装，下面对logstash进行配置!!!"
+echo "===="
 sudo cp ./shipper.conf /etc/logstash/conf.d/
 
 # 启动elasticsearch

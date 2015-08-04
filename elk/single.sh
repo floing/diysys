@@ -1,7 +1,7 @@
 #/bin/bash
 # codding: utf-8
 # Gmail: haojunyu2012
-# Description:	服务端配置
+# Description:	ELK单机安装配置
 
 
 
@@ -54,7 +54,7 @@ sudo apt-get install logstash
 echo "===="
 echo "logstash已经安装，下面对logstash进行配置!!!"
 echo "===="
-sudo cp ./center.conf /etc/logstash/conf.d/
+sudo cp ./single.conf /etc/logstash/conf.d/
 
 # 启动elasticsearch
 sudo service elasticsearch restart
