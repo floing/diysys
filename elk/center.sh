@@ -32,7 +32,7 @@ echo "===="
 echo "elasticsearch1.4.4已经安装，请对/etc/elasticsearch/elasticsearch.yml文件进行配置!!!"
 echo "===="
 
-# 启动elasticsearch
+# 启动elasticsearch服务
 sudo service elasticsearch restart
 
 # 设置elasticsearch开机启动
@@ -56,10 +56,10 @@ echo "logstash已经安装，下面对logstash进行配置!!!"
 echo "===="
 sudo cp ./center.conf /etc/logstash/conf.d/
 
-# 启动elasticsearch
-sudo service elasticsearch restart
+# 启动logstash服务
+sudo service logstash restart
 
-# 设置elasticsearch开机启动,比elasticsearch启动快，关闭慢
-sudo update-rc.d elasticsearch defaults 94 11
+# 设置logstash开机启动,比elasticsearch启动快，关闭慢
+sudo update-rc.d logstash defaults 94 11
 
 

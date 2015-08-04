@@ -30,10 +30,10 @@ echo "logstash已经安装，下面对logstash进行配置!!!"
 echo "===="
 sudo cp ./shipper.conf /etc/logstash/conf.d/
 
-# 启动elasticsearch
-sudo service elasticsearch restart
+# 启动logstash服务
+sudo service logstash restart
 
-# 设置elasticsearch开机启动,比elasticsearch启动快，关闭慢
-sudo update-rc.d elasticsearch defaults 95 10
+# 设置logstash开机启动,比elasticsearch启动快，关闭慢
+sudo update-rc.d logstash defaults 95 10
 
 
