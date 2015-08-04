@@ -32,7 +32,7 @@ sudo apt-get -y install redis-server
 echo 'deb http://packages.elasticsearch.org/logstash/1.5/debian stable main' | sudo tee /etc/apt/sources.list.d/logstash.list
 
 # 更新软件包数据库
-sudo apt-get update
+sudo apt-get update > /dev/null
 
 # 安装logstash
 sudo apt-get -y install logstash
