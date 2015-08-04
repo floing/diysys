@@ -66,3 +66,11 @@ sudo service logstash restart
 sudo update-rc.d logstash defaults 94 11
 
 
+## 安装Kibana
+# 下载kibana软件
+wget -O /tmp/kibana.tar.gz https://download.elasticsearch.org/kibana/kibana/kibana-4.0.1-linux-x64.tar.gz
+
+# 解压到/opt/kibana
+sudo tar xvf /tmp/kibana.tar.gz -C /opt/
+
+
