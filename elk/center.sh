@@ -3,6 +3,11 @@
 # Gmail: haojunyu2012
 
 
+### 安装java
+# 安装openjdk
+sudo apt-get install openjdk-7-jdk
+
+
 
 ### 安装elasticsearch
 # 导入GPG key
@@ -20,4 +25,21 @@ sudo apt-get -y install elasticsearch=1.4.4
 # 配置elasticsearch[/etc/elasticsearch/elasticsearch.yml]
 echo "elasticsearch1.4.4已经安装，请对/etc/elasticsearch/elasticsearch.yml文件进行配置!!!"
 
+# 启动elasticsearch
+sudo service elasticsearch restart
 
+# 设置elasticsearch开机启动
+sudo update-rc.d elasticsearch defaults 95 10
+
+
+
+## 安装logstash
+# 添加logstash到源中
+echo 'deb http://packages.elasticsearch.org/logstash/1.5/debian stable main' | sudo tee /etc/apt/sources.list.d/logstash.list
+
+# 更新软件包数据库
+sudo apt-get update
+
+# 安装logstash
+sudo apt-get install logstash
+ 
