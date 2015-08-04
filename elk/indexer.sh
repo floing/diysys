@@ -59,7 +59,7 @@ sudo apt-get -y install logstash
 echo "===="
 echo "logstash已经安装，下面对logstash进行配置!!!"
 echo "===="
-sudo cp ./center.conf /etc/logstash/conf.d/
+sudo cp ./indexer.conf /etc/logstash/conf.d/
 sudo cp ./logstash /etc/init.d/logstash
 
 # 启动logstash服务
