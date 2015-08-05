@@ -7,11 +7,11 @@
 
 ### 安装java
 # 安装openjdk
-sudo apt-get -y install openjdk-7-jdk
+sudo apt-get install openjdk-7-jdk
 
 
 ### 安装redis
-sudo apt-get -y install redis-server
+sudo apt-get install redis-server
 
 
 ### 安装elasticsearch
@@ -48,7 +48,7 @@ echo 'deb http://packages.elasticsearch.org/logstash/1.5/debian stable main' | s
 sudo apt-get update
 
 # 安装logstash
-sudo apt-get -y install logstash
+sudo apt-get install logstash
  
  # 配置logstash
 # 1.向/etc/logstash/conf.d/文件夹中添加配置文件
@@ -64,5 +64,13 @@ sudo service logstash restart
 
 # 设置logstash开机启动,比elasticsearch启动快，关闭慢
 sudo update-rc.d logstash defaults 94 11
+
+
+## 安装Kibana
+# 下载kibana软件
+wget -O /tmp/kibana.tar.gz https://download.elasticsearch.org/kibana/kibana/kibana-4.0.1-linux-x64.tar.gz
+
+# 解压到/opt/kibana
+sudo tar xvf /tmp/kibana.tar.gz -C /opt/
 
 
