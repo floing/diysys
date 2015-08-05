@@ -7,11 +7,11 @@
 
 ### 安装java
 # 安装openjdk
-sudo apt-get install openjdk-7-jdk
+sudo apt-get -y install openjdk-7-jdk
 
 
 ### 安装redis
-sudo apt-get install redis-server
+sudo apt-get -y install redis-server
 
 
 ### 安装elasticsearch
@@ -48,7 +48,7 @@ echo 'deb http://packages.elasticsearch.org/logstash/1.5/debian stable main' | s
 sudo apt-get update
 
 # 安装logstash
-sudo apt-get install logstash
+sudo apt-get -y install logstash
  
  # 配置logstash
 # 1.向/etc/logstash/conf.d/文件夹中添加配置文件
