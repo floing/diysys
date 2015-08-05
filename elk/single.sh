@@ -50,7 +50,7 @@ sudo apt-get update
 # 安装logstash
 sudo apt-get install logstash
  
- # 配置logstash
+# 配置logstash
 # 1.向/etc/logstash/conf.d/文件夹中添加配置文件
 # 2.在/etc/init.d/logstash中指名配置文件为/etc/logstash/conf.d/*.conf
 echo "===="
@@ -72,5 +72,26 @@ wget -O /tmp/kibana.tar.gz https://download.elasticsearch.org/kibana/kibana/kiba
 
 # 解压到/opt/kibana
 sudo tar xvf /tmp/kibana.tar.gz -C /opt/
+sudo mv /opt/kibana-4.0.1-linux-x64 /opt/kibana
+
+# 配置kibana
+# 1.更改配置文件/opt/kibana/config/kibana.yml中host为“localhost”
+# 2.向/etc/init.d添加kibana服务文件kibana4
+echo "===="
+echo "kibana已经安装，下面对kibana进行配置!!!"
+echo "===="
+sudo cp ./kibana.yml /opt/kibana/config/
+sudo cp ./kibana4 /etc/init.d/
+
+# 启动kibana服务
+sudo service kibana4 restart
+
+# 设置kibana4开机启动,比elasticsearch启动慢，关闭快
+sudo update-rc.d logstash defaults 96 9
+
+
+## 安装反向代理工具Nginx
+
+
 
 
