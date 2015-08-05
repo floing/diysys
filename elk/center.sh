@@ -12,7 +12,10 @@ sudo apt-get install openjdk-7-jdk
 
 ### 安装redis
 sudo apt-get install redis-server
-
+echo "===="
+echo "redis-server安装完成，更改配置/etc/redis/redis.conf中绑定ip为0.0.0.0"
+echo "===="
+sudo cp ./redis.conf /etc/redis/redis.conf
 
 ### 安装elasticsearch
 # 导入GPG key

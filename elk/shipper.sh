@@ -5,6 +5,19 @@
 
 
 
+echo -n "Have you set up the server ip in the file shipper.conf?(y/n)"
+read yn
+if [ -z $yn ];
+then
+	yn="y"
+fi
+if [ "$yn" == "n" ];
+then
+	echo "You need set up the server ip in the file shipper.conf first."
+	exit 1
+fi
+
+
 ### 安装java
 # 安装openjdk
 sudo apt-get install openjdk-7-jdk
