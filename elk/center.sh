@@ -25,7 +25,7 @@ wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key
 echo 'deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' | sudo tee /etc/apt/sources.list.d/elasticsearch.list
 
 # 更新软件包数据库
-sudo apt-get update
+sudo apt-get update > /dev/null
 
 # 安装elasticsearch
 sudo apt-get -y install elasticsearch=1.4.4
@@ -48,7 +48,7 @@ sudo update-rc.d elasticsearch defaults 95 10
 echo 'deb http://packages.elasticsearch.org/logstash/1.5/debian stable main' | sudo tee /etc/apt/sources.list.d/logstash.list
 
 # 更新软件包数据库
-sudo apt-get update
+sudo apt-get update > /dev/null
 
 # 安装logstash
 sudo apt-get -y install logstash
