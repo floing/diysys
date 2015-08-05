@@ -37,11 +37,14 @@ sudo apt-get update
 # 安装logstash
 sudo apt-get install logstash
  
-# 配置logstash[向/etc/logstash/conf.d/文件夹中添加配置文件]
+ # 配置logstash
+# 1.向/etc/logstash/conf.d/文件夹中添加配置文件
+# 2.在/etc/init.d/logstash中指名配置文件为/etc/logstash/conf.d/*.conf
 echo "===="
 echo "logstash已经安装，下面对logstash进行配置!!!"
 echo "===="
 sudo cp ./shipper.conf /etc/logstash/conf.d/
+sudo cp ./logstash /etc/init.d/logstash
 
 # 启动logstash服务
 sudo service logstash restart
