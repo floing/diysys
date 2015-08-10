@@ -12,7 +12,7 @@ then
 fi
 if [ "$yn" == "n" ];
 then
-	echo "You need set up the server ip in the file shipper.conf first."
+	echo "1) You need set up the server ip in the file openssl.conf first."
 	exit 1
 fi
 
@@ -80,6 +80,30 @@ sudo service logstash restart
 
 # 设置logstash开机启动,比elasticsearch启动快，关闭慢
 sudo update-rc.d logstash defaults 94 11
+
+
+## 安装Kibana
+# 下载kibana软件
+wget -O /tmp/kibana.tar.gz https://download.elasticsearch.org/kibana/kibana/kibana-4.0.1-linux-x64.tar.gz
+
+# 解压到/opt/kibana
+sudo tar xvf /tmp/kibana.tar.gz -C /opt/
+sudo mv /opt/kibana-4.0.1-linux-x64 /opt/kibana
+
+# 配置kibana
+# 1.更改配置文件/opt/kibana/config/kibana.yml中host为“localhost”
+# 2.向/etc/init.d添加kibana服务文件kibana4
+echo "===="
+echo "kibana已经安装，下面对kibana进行配置!!!"
+echo "===="
+sudo cp ./kibana.yml /opt/kibana/config/
+sudo cp ./kibana4 /etc/init.d/
+
+# 启动kibana服务
+sudo service kibana4 restart
+
+# 设置kibana4开机启动,比elasticsearch启动慢，关闭快
+sudo update-rc.d logstash defaults 96 9
 
 
 ## 构建SSL证书
