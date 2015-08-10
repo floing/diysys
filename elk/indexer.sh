@@ -15,6 +15,7 @@ sudo apt-get -y install redis-server
 echo "===="
 echo "redis-server安装完成，更改配置/etc/redis/redis.conf中绑定ip为0.0.0.0"
 echo "===="
+sudo cp /etc/redis.conf /etc/redis/redis.conf.bak
 sudo cp ./redis.conf /etc/redis/redis.conf
 
 ### 安装elasticsearch
@@ -67,6 +68,31 @@ sudo service logstash restart
 
 # 设置logstash开机启动,比elasticsearch启动快，关闭慢
 sudo update-rc.d logstash defaults 94 11
+
+
+## 构建SSL证书
+# 创建证书目录
+sudo mkdir -p /etc/pki/tls/certs
+sudo mkdir /etc/pki/tls/private
+
+# 在/etc/ssl/openssl.cnf配置文件中[v3_ca]下添加subjectAltName=IP:logstash_server_ip
+cp /etc/ssl/openssl.cnf /etc/ssl/openssl.cnf.bak
+cp ./openssl.cnf /etc/ssl/openssl.cnf
+
+# 通过openssl.cnf创建证书
+pushd $PWD
+cd /etc/pki/tls
+sudo openssl req -config /etc/ssl/openssl.cnf -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt
+popd
+
+# 重启logstash服务
+sudo service logstash restart
+
+# 拷贝/etc/pki/tls/certs/logstash-forwarder.crt到shipper机器同目录下
+echo "===="
+echo "拷贝/etc/pki/tls/certs/logstash-forwarder.crt到shipper机器同目录下"
+echo "===="
+
 
 ## 安装反向代理工具Nginx
 # 安装nginx和apache2-utils(有apache的web服务器内置工具，如htpasswd)
