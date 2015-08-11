@@ -87,7 +87,7 @@ sudo cp ./kibana4 /etc/init.d/
 sudo service kibana4 restart
 
 # 设置kibana4开机启动,比elasticsearch启动慢，关闭快
-sudo update-rc.d logstash defaults 96 9
+sudo update-rc.d kibana4 defaults 96 9
 
 
 ## 安装反向代理工具Nginx
