@@ -5,7 +5,7 @@
 
 
 
-echo -n "Have you set up the server ip in the file shipper.conf?(y/n)"
+echo -n "Have you set up the server ip in the file shipper.conf and logstash-forwarder.conf?(y/n)"
 read yn
 if [ -z $yn ];
 then
@@ -53,3 +53,24 @@ sudo service logstash restart
 sudo update-rc.d logstash defaults 95 10
 
 
+## 安装logstash-forward
+# 添加源
+echo 'deb http://packages.elasticsearch.org/logstashforwarder/debian stable main' | sudo tee /etc/apt/sources.list.d/logstashforwarder.list
+
+# 获取GPG锁钥
+wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
+
+# 更新源
+sudo apt-get update > /dev/null
+
+# 安装logstash-forwarder
+sudo apt-get install logstash-forwarder
+
+# 配置logstash-forwarder
+echo “====”
+echo “请先确认logstash-forwarder.crt文件是否从index机器上拷入同目录”
+echo “====”
+sudo cp ./logstash-forwarder.conf  /etc/logstash-forwarder.conf
+
+# 重启logstash-forwarder
+sudo service logstash-forwarder restart

@@ -1,0 +1,19 @@
+#####/etc/default/docker
+
+# Docker Upstart and SysVinit configuration file
+
+# Customize location of Docker binary (especially for development testing).
+#DOCKER="/usr/local/bin/docker"
+
+# Use DOCKER_OPTS to modify the daemon startup options.
+#DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4"
+## -H 改变docker进程监听的IP和端口。默认情况是监听unix:///var/run/docker.sock，只允许本地的root用户连接。
+DOCKER_OPTS="-H unix:///var/run/docker.sock -H 0.0.0.0:4243 --insecure-registry 127.0.0.1:5000"
+
+# If you need Docker to use an HTTP proxy, it can also be specified here.
+## 公司代理
+export http_proxy="http://proxy.wdf.sap.corp:8080"
+export https_proxy="http://proxy.wdf.sap.corp:8080"
+
+# This is also a handy place to tweak where Docker's temporary files go.
+#export TMPDIR="/mnt/bigdrive/docker-tmp"
