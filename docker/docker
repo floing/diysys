@@ -11,7 +11,7 @@
 DOCKER_OPTS="-H unix:///var/run/docker.sock -H 0.0.0.0:4243 --insecure-registry 127.0.0.1:5000"
 
 # If you need Docker to use an HTTP proxy, it can also be specified here.
-## 公司代理
+## 代理
 export http_proxy="http://proxy.wdf.sap.corp:8080"
 export https_proxy="http://proxy.wdf.sap.corp:8080"
 

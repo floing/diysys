@@ -1,4 +1,8 @@
 #!/bin/bash
+# coding:	utf-8
+# Author:	hjy
+# Gmail:	haojunyu2012@gmail.com
+# detail:	此docker配置脚本目前仅适用于ubuntu版本
 
 if [ `id -u` -ne 0 ];
 then

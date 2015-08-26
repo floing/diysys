@@ -12,3 +12,16 @@
 	# git让https代理
 	git config --global https.proxy http://proxy_username:proxy_password@proxy_ip:port
 	```
+
+### docker
+docker环境的配置
+
+### elk日志分析系统
+elk日志分析系统的配置
+
+### vim插件及配置
+vim环境的配置以及一些实用的插件
+
+## 系统常用脚本
+### clean
+系统清理脚本
