@@ -52,7 +52,7 @@ sudo service logstash restart
 # 设置logstash开机启动,比elasticsearch启动快，关闭慢
 sudo update-rc.d logstash defaults 95 10
 
-
+:<<block
 ## 安装logstash-forward
 # 添加源
 echo 'deb http://packages.elasticsearch.org/logstashforwarder/debian stable main' | sudo tee /etc/apt/sources.list.d/logstashforwarder.list
@@ -74,3 +74,4 @@ sudo cp ./logstash-forwarder.conf  /etc/logstash-forwarder.conf
 
 # 重启logstash-forwarder
 sudo service logstash-forwarder restart
+block

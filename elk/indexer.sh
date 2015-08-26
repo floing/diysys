@@ -105,7 +105,7 @@ sudo service kibana4 restart
 # 设置kibana4开机启动,比elasticsearch启动慢，关闭快
 sudo update-rc.d logstash defaults 96 9
 
-
+:<<block
 ## 构建SSL证书
 # 创建证书目录
 sudo mkdir -p /etc/pki/tls/certs
@@ -120,6 +120,7 @@ pushd $PWD
 cd /etc/pki/tls
 sudo openssl req -config /etc/ssl/openssl.cnf -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt
 popd
+block
 
 # 重启logstash服务
 sudo service logstash restart
