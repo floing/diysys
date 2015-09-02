@@ -1,70 +1,344 @@
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages available in Debian.
-runtime! debian.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Author:	hjy
+" Gmail:	haojunyu2012@gmail.com
+" Detail:	vim的个人定制化文件，通用linux发行把本
+" Refer:	https://github.com/liuzheng712/config/blob/master/.vimrc
+"			https://github.com/ma6174/vim/blob/master/.vimrc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Uncomment the next line to make Vim more Vi-compatible
-" NOTE: debian.vim sets 'nocompatible'. Setting 'compatible' changes numerous
-" options, so any other options should be set AFTER setting 'compatible'.
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" 通用配置
+""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""
+" 基本配置
+""""""""""""""""""""""""""""""""""
+" 关闭兼容模式，打开Vim的扩展功能
 set nocompatible
+" 启动时不显示援助索马里儿童的提示
+set shortmess=atI
+" 在所有模式都可以使用鼠标
+set mouse=a
+" history存储长度
+set history=1000
+" 粘贴时保持格式
+set paste
+" 当文件被改动时自动载入
+set autoread
+" 自动把内容写回文件
+set autowrite
+" 退格键可以处理indent，eol，start
+set backspace=indent,eol,start
 
-" Vim5 and later versions support syntax highlighting. Uncommenting the
-" following enables syntax highlighting by default.
-if has("syntax")
-	syntax on " 语法高亮
-	endif
-	colorscheme peachpuff " elflord/ron/peachpuff/default/... 设置配色方案，vim自带的配色方案保存在/usr/share/vim/vim74/colors目录下
+" 文件默认编码
+set encoding=utf-8
+" 检测文件编码顺序
+set fileencodings=utf-8,ucs-bom,cp936,gb2312,gbk,gb18030,big5,euc-jp,euc-kr,latin1
+"防止特殊符号无法显示
+"set ambiwidth=double
 
-" detect file type
-filetype on  	" 文件类型检测
-filetype plugin on " 文件类型对应的插件
+" 文件类型检测（/usr/share/vim/vim74/filetype.vim）
+filetype on
+" 文件类型对应的插件（/usr/share/vim/vim74/ftplugin.vim）
+filetype plugin on
+" 文件类型对应的缩进文件
+filetype indent on
 
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well 
-set background=dark
 
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file 打开文件自动定位到文章末尾
-if has("autocmd")
-	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-	"have Vim load indentation rules and plugins according to the detected filetype
-	filetype plugin indent on " 检测文件类型，对应插件，缩进
+""""""""""""""""""""""""""""""""""
+" 外观配置
+""""""""""""""""""""""""""""""""""
+" elflord/ron/peachpuff/default/... 设置配色方案，vim自带的配色方案保存在/usr/share/vim/vim74/colors目录下
+colorscheme peachpuff 
+" 设置字体
+set guifont=Courier\ 12
+" 设置vim前景背景颜色
+hi Normal ctermfg=green ctermbg=black guifg=green guibg=black
+hi LineNr ctermfg=blue ctermbg=black guifg=blue guibg=black
+hi CursorLine cterm=NONE ctermbg=white ctermfg=black guibg=white guifg=black
+
+" 自定义高亮配色
+hi User1 ctermfg=black  ctermbg=white " guifg=black guibg=white
+hi User2 ctermfg=red    "ctermbg=white " guifg=red   guibg=white
+hi User3 ctermfg=green  "ctermbg=white " guifg=green guibg=white
+hi User4 ctermfg=red    ctermbg=green " guifg=red   guibg=green
+hi User5 guifg=#002600  guibg=#67ab6e   gui=italic
+
+" 显示行号
+set number
+" 突出显示当前行
+set cursorline
+" 整词换行
+set linebreak
+" 光标从行首和行末时可以跳到另一行去
+set whichwrap=b,s,<,>,[,]
+" TAB和空格可见（显示方便）
+set list
+" TAB为>---，空格为-
+set listchars=tab:>-,trail:-
+
+" 设置折叠文本
+set foldenable
+" 设置折叠等级，越大越少的折叠
+set foldlevel=30
+" 折叠语法高亮
+set foldmethod=syntax
+" 设置折叠栏宽度
+set foldcolumn=4
+" 空格展开折叠
+nnoremap <space>  zA
+
+
+" 总是开启状态栏
+set laststatus=2
+" 状态栏显示
+set statusline=
+    " 正常高亮显示缓冲区号,占三个字符
+set statusline+=%3*%-3.3n\ 
+    " User{3}高亮显示文件名
+set statusline+=%0*%f\ 
+    " User{2}高亮显示缓冲区标志：帮助|修改|只读|预览窗口
+set statusline+=%2*%h%m%r%w\ 
+    " 正常高亮显示
+set statusline+=%2*[
+    " vim版本高于6.0
+if v:version >= 600
+        " 显示文件类型
+    set statusline+=%{strlen(&ft)?&ft:'none'},
+        " 显示文本编码
+    set statusline+=%{&fileencoding},
 endif
+    " 显示文件格式 dos/unix/mac
+set statusline+=%{&fileformat}]
+    " 用微笑符中的鼻子状态表现文件状态error|warning|norm
+if filereadable(expand("$HOME/.vim/plugin/vimbuddy.vim"))
+    set statusline+=%0*\ %{VimBuddy()}
+endif
+    " User{2}高亮显示时间
+set statusline+=%2*\ %-16{strftime(\"%Y-%m-%d\ %H:%M\")}\ 
+    " 左对齐和右对齐项目之间的分割点
+set statusline+=%0*%=
+    " 正常高亮显示光标所在字符的值（十六进制）
+set statusline+=0x%-4B\ 
+    " 正常高亮显示光标所在的位置（行，列-虚拟列 行数百分百）
+set statusline+=%-10.(%l,%c%V%)\ %<%P
 
-" The following are commented out as they cause vim to behave a lot
-" differently from regular Vi. They are highly recommended though.
+" 命令行显示输入的命令
+set showcmd
+" 命令行显示vim当前模式
+set showmode
 
-"set ignorecase " 搜索模式里忽略大小写
-"set smartcase " 如果搜索模式包含大写字符，不使用 'ignorecase' 选项。只有在输入搜索模式并且打开 'ignorecase' 选项时才会使用。
-set autowrite " 自动把内容写回文件: 如果文件被修改过，在每个 :next、:rewind、:last、:first、:previous、:stop、:suspend、:tag、:!、:make、CTRL-] 和 CTRL-^命令时进行；用 :buffer、CTRL-O、CTRL-I、'{A-Z0-9} 或 `{A-Z0-9} 命令转到别的文件时亦然。
-set autoindent " 设置自动对齐(缩进)：即每行的缩进值与上一行相等；使用 noautoindent 取消设置
-"set smartindent " 智能对齐方式
-set tabstop=4 " 设置制表符(tab键)的宽度
-set softtabstop=4 " 设置软制表符的宽度
-set shiftwidth=4 " (自动) 缩进使用的4个空格
-set list		" TAB和空格可见
-set listchars=tab:>-,trail:-	" TAB为>---，空格为-
-"set cindent " 使用 C/C++ 语言的自动缩进方式
-"set cinoptions={0,1s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s "设置C/C++语言的具体缩进方式
-"set backspace=2 " 设置退格键可用
-set showmatch " 设置匹配模式，显示匹配的括号
-set linebreak " 整词换行
-set whichwrap=b,s,<,>,[,] " 光标从行首和行末时可以跳到另一行去
+
+""""""""""""""""""""""""""""""""""
+" 缩进配置
+""""""""""""""""""""""""""""""""""
+" 设置制表符（tab键）的宽度
+set tabstop=4
+" 插入tab符号以空格替换（通用）
+set expandtab
+" （自动）缩进使用4个空格
+set shiftwidth=4
+
+" 设置自动对齐（缩进）：即每行的缩进值与上一行相等
+set autoindent
+" 开启新行时使用智能自动缩进
+set smarttab
+" 开启c程序缩进
+" set cindent
+"设置C/C++语言的具体缩进方式
+" set cinoptions={0,1s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s 
+
+
+""""""""""""""""""""""""""""""""""
+" 搜索配置
+""""""""""""""""""""""""""""""""""
+" 输入搜索内容时就显示搜索结果
+set incsearch
+" 搜索时高亮显示被查找的文本
+set hlsearch
+
+" 搜索时忽略大小写
+set ignorecase
+" 全小写时才不敏感，有大写时就敏感
+set smartcase
+
+
+""""""""""""""""""""""""""""""""""
+" 高亮匹配
+""""""""""""""""""""""""""""""""""
+" 如果支持语法高亮，则开启
+if has("syntax")
+	syntax on
+endif
+" 高亮匹配括号
+set showmatch
+" 将每行超出80列的字符标记为白字红底
+highlight OverLength ctermbg=DarkGray guibg=#592929
+match OverLength /\%81v.\+/
+
+
+
+""""""""""""""""""""""""""""""""""
+" 自动载入模板文件
+""""""""""""""""""""""""""""""""""
+" markdown模板，主要是为了写博文
+autocmd BufNewFile *.md     0r  ~/.vim/template/markdown.md
+" python模板
+autocmd BufNewFile *.py     0r  ~/.vim/template/python.py
+" shell模板
+autocmd BufNewFile *.sh     0r  ~/.vim/template/shell.sh
+"autocmd BufNewFile *.tex    0r  ~/.vim/template/latex.tex
+"autocmd BufNewFile *.html   0r  ~/.vim/template/html.html
+
+autocmd GUIEnter * simalt ~x
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" 插件配置
+""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""
+" 文件管理器
+""""""""""""""""""""""""""""""""""
+" 进入vim后自动打开winmanager
+let g:AutoOpenWinManager = 1
+" 设置要管理的插件
+let g:winManagerWindowLayout='FileExplorer'
+" 如果所有编辑文件都关闭了，退出vim
+let g:persistentBehaviour=0
+" <F9>打开/关闭文件管理器
+nnoremap <silent> <F9> :WMToggle<CR>
+
+
+""""""""""""""""""""""""""""""""""
+" 标签列表的设置
+""""""""""""""""""""""""""""""""""
+" 启动vim后，自动打开taglist窗口
+let Tlist_Auto_Open=1  
+" 高亮显示当前标签列表中的标签
+let Tlist_Auto_Highlight_Tag=1
+" 添加新文件后，标签列表将自动更新
+let Tlist_Auto_Update=1
+" 显示标签域--类
+let Tlist_Display_Tag_Scope=1
+" 如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Exit_OnlyWindow=1
+" Taglist窗口里可折叠
+let Tlist_Enable_Fold_Column=1
+" 只显示当前文件的标签，折叠其他文件的标签
+let Tlist_File_Fold_Auto_Close=1
+" 多个文件间切换时，标签列表也更新为当前文件
+let Tlist_Show_One_File=1
+" 标签列表显示在Buffer区的右边
+let Tlist_Use_Right_Window=1
+" 单击标签列表中的标签将定位到标签定义处
+let Tlist_Use_SingleClick=1
+" <F10>打开/关闭标签列表
+nnoremap <silent> <F10> :TlistToggle<CR>
+" 添加vc标签文件
+"set tags+=~/.vim/tags/vctag
+" 添加gnu c标签文件
+set tags+=~/.vim/tags/gctag
+" 添加gcc标签文件
+"set tags+=~/.vim/tags/gcctag
+" 添加c++标签文件
+"set tags+=~/.vim/tags/cpptag
+
+
+""""""""""""""""""""""""""""""""""
+" 缓冲区管理
+""""""""""""""""""""""""""""""""""
+" 用<C-h/j/k/l>切换到上下左右窗口
+let g:miniBufExplMapWindowNavVim = 1
+" 用Ctrl+箭头切换到上下左右窗口
+let g:miniBufExplMapWindowNavArrows = 1
+"let g:bufExplorerMaxHeight=30
+" 只有一个buffer，MiniBufExplorer这栏也会出现
+let g:miniBufExplorerMoreThanOne=0
+" normal模式下<Tab>移动到下一个buffer，<C-Tab>上一个
+nnoremap <silent> <Tab> :bn<CR>
+nnoremap <silent> <C-Tab> :bp<CR>
+" 不要在不可编辑内容的窗口（如TagList）中打开选中的buffer
+"let g:miniBufExplModSelTarget = 1"
+
+
+""""""""""""""""""""""""""""""""""
+" 自动补全
+""""""""""""""""""""""""""""""""""
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+" 显示函数参数列表 
+let OmniCpp_ShowPrototypeInAbbr = 1
+" 输入 .  后自动补全
+let OmniCpp_MayCompleteDot = 1
+" 输入 -> 后自动补全 
+let OmniCpp_MayCompleteArrow = 1
+" 输入 :: 后自动补全 
+let OmniCpp_MayCompleteScope = 1
+" 设置默认命名空间
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+
+" 命令行补全使用增强模式
+set wildmenu
+" 补全时显示样式为多行
+set wildmode=list:full
+    " 版本控制
+set wildignore+=.hg,.git,.svn
+    " Python 字节码
+set wildignore+=*.pyc
+    " Vim 交换文件
+set wildignore+=*.sw?
+    " LaTeX 文件
+set wildignore+=*.aux,*.out,*.toc
+    " 二进制图像
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+    " 已编译的对象文件
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest
+    " OSX 糟糕物
+set wildignore+=*.DS_Store
+
+" <C-N>自动补全时扫描当前缓冲区，字典，当前文件包含的头文件，标签补全
+set complete=.,k,i,t
+" 弹出补全菜单
+set completeopt=menuone,menu,preview
+" 离开插入模式后自动关闭预览窗口
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+" 根据文件类型使用相对应的自动补全函数
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+"autocmd FileType sql set omnifunc=sqlcomplete#Completesql
+"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+"autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+"autocmd FileType ruby set omnifunc=rubycomplete#Completeruby
+
+" 括号及引号自动补全
+inoremap { {<CR>}<ESC>O
+
+
+""""""""""""""""""""""""""""""""""
+" QuickFix设置
+""""""""""""""""""""""""""""""""""
+" 按下<F2>，执行make
+nnoremap <F2> :TlistToggle<CR> :make<CR><CR><CR> :copen<CR> :TlistToggle<CR>
+" 按下<F12>，执行make clean
+nnoremap <F12> :make clean<CR><CR><CR> :cclose<CR>
+" 按下<F3>，光标移到上一个错误所在的行
+nnoremap <F3> :cp<CR>
+" 按下<F4>，光标移到下一个错误所在的行
+nnoremap <F4> :cn<CR>
+
+
+" reopening a file 打开文件自动定位到文章末尾
+"au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+
 "set hidden " Hide buffers when they are abandoned
-set mouse=a " Enable mouse usage (all modes) "使用鼠标
-set number " Enable line number "显示行号
 "set previewwindow " 标识预览窗口
-set history=50 " set command history to 50 "历史记录50条
 
-"--状态行设置--
-set laststatus=2 " 总显示最后一个窗口的状态行；设为1则窗口数多于一个的时候显示最后一个窗口的状态行；0不显示最后一个窗口的状态行
-set ruler " 标尺，用于显示光标位置的行号和列号，逗号分隔。每个窗口都有自己的标尺。如果窗口有状态行，标尺在那里显示。否则，它显示在屏幕的最后一行上。
 
-"--命令行设置--
-set showcmd " 命令行显示输入的命令
-set showmode " 命令行显示vim当前模式
-"--find setting--
-set incsearch " 输入字符串就显示匹配点
-set hlsearch " 高亮显示匹配点
 
 "-- markdown --
 let g:vimmarkdownfoldingdisabled=1 "取消代码折叠
@@ -72,3 +346,17 @@ let g:vimmarkdownnodefaultkeymappings=1 "取消默认的键对应
 let g:vimmarkdownmath=1 "使用数学符号
 let g:vimmarkdownfrontmatter=1 "高亮YMAL frontmatter
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+
+""""""""""""""""""""""""""""""""""""""""""""
+" undo
+""""""""""""""""""""""""""""""""""""""""""""
+" （1）编程缩进，形如
+" if(condition){
+"   int t=10;
+" }
+" （2）利用vundle管理插件，可以将状态栏多彩化
+" （3）尝试用tagbar替换taglist
+" （4）尝试exvim
+" （5）尝试cscope代替ctags
+" （6）nerdtree代替fileexplore

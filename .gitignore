@@ -2,3 +2,4 @@
 *.swp
 .ubuntu_mirrors*
 *.pyc
+vim/.vim/tags/glibx-2.22/*

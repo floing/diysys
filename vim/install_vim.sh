@@ -6,10 +6,21 @@
 
 
 # 安装vim
-sudo apt-get install vim vim-scripts vim-doc
+if which apt-get > /dev/null
+then
+    # 基本配置
+	sudo apt-get install vim vim-scripts vim-doc
+    # ctags
+    sudo apt-get install exuberant-ctags
+fi
+
+# 备份原来配置文件
+mv $HOME/.vimrc $HOME/.vimrc.bak
+mv $HOME/.vim $HOME/.vim.bak
+
 
 # 配置vim
 ln `pwd`/.vimrc $HOME/
-ln `pwd`/.vim $HOME/
+ln -s `pwd`/.vim $HOME/.vim
 
 # 配置插件

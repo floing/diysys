@@ -29,6 +29,6 @@ sudo apt-get -y autoremove >> $log
 
 # 查看磁盘使用分析器，了解磁盘具体使用情况
 echo "磁盘使用分析器正在扫描磁盘，请稍等---"
-baobab >> $log
+sudo baobab >> $log
 
 echo "====" >> $log
