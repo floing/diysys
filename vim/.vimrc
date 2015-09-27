@@ -1,9 +1,9 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Author:	hjy
 " Gmail:	haojunyu2012@gmail.com
-" Detail:	vim的个人定制化文件，通用linux发行把本
-" Refer:	https://github.com/liuzheng712/config/blob/master/.vimrc
-"			https://github.com/ma6174/vim/blob/master/.vimrc
+" Detail:	vim的个人定制化文件,使用Vundle管理vim插件，通用linux发行版本
+" Refer:	https://www.ituring.com.cn/article/53300
+"			http://beiyuu.com/git-vim-tutorial/
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -36,12 +36,6 @@ set fileencodings=utf-8,ucs-bom,cp936,gb2312,gbk,gb18030,big5,euc-jp,euc-kr,lati
 "防止特殊符号无法显示
 "set ambiwidth=double
 
-" 文件类型检测（/usr/share/vim/vim74/filetype.vim）
-filetype on
-" 文件类型对应的插件（/usr/share/vim/vim74/ftplugin.vim）
-filetype plugin on
-" 文件类型对应的缩进文件
-filetype indent on
 
 
 """"""""""""""""""""""""""""""""""
@@ -49,6 +43,7 @@ filetype indent on
 """"""""""""""""""""""""""""""""""
 " elflord/ron/peachpuff/default/... 设置配色方案，vim自带的配色方案保存在/usr/share/vim/vim74/colors目录下
 colorscheme peachpuff 
+" colorscheme solarized
 " 设置字体
 set guifont=Courier\ 12
 " 设置vim前景背景颜色
@@ -192,47 +187,147 @@ autocmd BufNewFile *.sh     0r  ~/.vim/template/shell.sh
 autocmd GUIEnter * simalt ~x
 
 
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" 插件配置
+" 自定义函数
 """"""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""
-" 文件管理器
+" <Ctrl-s>保存
 """"""""""""""""""""""""""""""""""
-" 进入vim后自动打开winmanager
-let g:AutoOpenWinManager = 1
-" 设置要管理的插件
-let g:winManagerWindowLayout='FileExplorer'
-" 如果所有编辑文件都关闭了，退出vim
-let g:persistentBehaviour=0
+
+
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" 插件配置--Vundle管理
+""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""
+" Vundle配置
+""""""""""""""""""""""""""""""""""
+" 文件类型检测关闭[必须]（/usr/share/vim/vim74/filetype.vim）
+filetype off
+" 设置runtime path包含Vundle的路径并且初始化
+set rtp+=~/.vim/bundle/Vundle.vim
+" 设置plugins安装地址
+call vundle#begin('~/.vim/bundle/')
+
+""""""""""""""""""""""""""""""""""
+" vundle管理的插件
+""""""""""""""""""""""""""""""""""
+" 安装Vundle，让其管理插件[必须]
+Plugin 'gmarik/Vundle.vim'
+
+" 在Vim的编辑窗口中树状显示文件目录[The-NERD-tree]
+Plugin 'The-NERD-tree'
+
+" 快速添加/去除注释
+Plugin 'The-NERD-Commenter'
+
+" solarized主题
+Plugin 'altercation/vim-colors-solarized'
+
+" molokai主题
+Plugin 'tomasr/molokai'
+
+" 替换taglist的插件[tagbar]
+Plugin 'majutsushi/tagbar'
+
+" 状态栏增强展示[vim-powerline]
+Plugin 'Lokaltog/vim-powerline'
+
+" 多文档编辑
+Plugin 'fholgado/minibufexpl.vim'
+
+" 文件搜索
+Plugin 'kien/ctrlp.vim'
+
+" 括号显示增强
+Plugin 'luochen1990/rainbow'
+
+" 快速移动
+Plugin 'Lokaltog/vim-easymotion'
+
+" 语义高亮
+Plugin 'scrooloose/syntastic'
+
+" 自动补全
+Plugin 'Valloric/YouCompleteMe'
+
+" python集成开发
+Plugin 'Python-mode-klen'
+
+""""""""""""""""""""""""""""""""""
+" Vundle插件安装样例:
+" 插件在github上
+" Plugin 'tpope/vim-fugitive'
+" 插件来自网页http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git插件，但插件不在Github上
+" Plugin 'git://git.wincent.com/command-t.git'
+" 插件在本地机器上 (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" 使用用户名来避免插件冲突 ie. L9
+" Plugin 'user/L9', {'name': 'newL9'}
+""""""""""""""""""""""""""""""""""
+
+" 所有插件的添加在end之前[必须]
+call vundle#end()            
+" 文件类型对应的插件[必须]（/usr/share/vim/vim74/ftplugin.vim）
+filetype plugin on
+" 文件类型对应的缩进文件
+filetype indent on
+
+
+
+""""""""""""""""""""""""""""""""""
+" The-NERD-tree配置
+""""""""""""""""""""""""""""""""""
+" 不显示缓冲文件，中间文件
+let NERDTreeIgnore=[ '.pyc$', '.pyo$', '.obj$', '.o$', '.so$', '.egg$', '^.git$', '^.svn$', '^.hg$' ]
+" 只剩一个NERDTree窗口时退出vim
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 " <F9>打开/关闭文件管理器
-nnoremap <silent> <F9> :WMToggle<CR>
+nnoremap <silent> <F9> :NERDTreeToggle<CR>
 
 
 """"""""""""""""""""""""""""""""""
-" 标签列表的设置
+" The-NERD-Commenter配置
 """"""""""""""""""""""""""""""""""
-" 启动vim后，自动打开taglist窗口
-let Tlist_Auto_Open=1  
-" 高亮显示当前标签列表中的标签
-let Tlist_Auto_Highlight_Tag=1
-" 添加新文件后，标签列表将自动更新
-let Tlist_Auto_Update=1
-" 显示标签域--类
-let Tlist_Display_Tag_Scope=1
-" 如果taglist窗口是最后一个窗口，则退出vim
-let Tlist_Exit_OnlyWindow=1
-" Taglist窗口里可折叠
-let Tlist_Enable_Fold_Column=1
-" 只显示当前文件的标签，折叠其他文件的标签
-let Tlist_File_Fold_Auto_Close=1
-" 多个文件间切换时，标签列表也更新为当前文件
-let Tlist_Show_One_File=1
-" 标签列表显示在Buffer区的右边
-let Tlist_Use_Right_Window=1
-" 单击标签列表中的标签将定位到标签定义处
-let Tlist_Use_SingleClick=1
-" <F10>打开/关闭标签列表
-nnoremap <silent> <F10> :TlistToggle<CR>
+" 注释的时候自动加个空格, 强迫症必配
+let g:NERDSpaceDelims=1
+" mm智能判断加上/解开注释
+map mm <leader>c<space>
+
+
+""""""""""""""""""""""""""""""""""
+" solarized配置（最优）
+""""""""""""""""""""""""""""""""""
+" 设置终端的颜色范围
+" let g:solarized_termcolors=256
+" 设置终端背景是否透明
+let g:solarized_termtrans=1
+" 设置特殊字符：末尾空格，Tab，换行显示模式high|normal|low
+let g:solarized_visibility='high'
+
+
+""""""""""""""""""""""""""""""""""
+" molokai配置（次优）
+""""""""""""""""""""""""""""""""""
+" 使用molokai原先的颜色模式
+let g:molokai_original = 1
+
+
+
+""""""""""""""""""""""""""""""""""
+" ctag配置
+""""""""""""""""""""""""""""""""""
 " 添加vc标签文件
 "set tags+=~/.vim/tags/vctag
 " 添加gnu c标签文件
@@ -244,99 +339,154 @@ set tags+=~/.vim/tags/gctag
 
 
 """"""""""""""""""""""""""""""""""
-" 缓冲区管理
+" tagbar配置
+""""""""""""""""""""""""""""""""""
+" 启动时自动focus
+let g:tagbar_autofocus=1
+" <F10>打开/关闭Tagbar
+nnoremap <silent> <F10> :TagbarToggle<CR>
+
+
+
+""""""""""""""""""""""""""""""""""
+" vim-powerline配置
+""""""""""""""""""""""""""""""""""
+" powerline设置状态栏的模式fancy|unicode
+let g:Powerline_symbols = 'unicode'
+
+
+
+""""""""""""""""""""""""""""""""""
+" minibufexpl配置
 """"""""""""""""""""""""""""""""""
 " 用<C-h/j/k/l>切换到上下左右窗口
-let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavVim    = 1
 " 用Ctrl+箭头切换到上下左右窗口
 let g:miniBufExplMapWindowNavArrows = 1
-"let g:bufExplorerMaxHeight=30
-" 只有一个buffer，MiniBufExplorer这栏也会出现
-let g:miniBufExplorerMoreThanOne=0
+" 不要在不可编辑内容的窗口（如TagList）中打开选中的buffer
+let g:miniBufExplModSelTarget       = 1
+" 解决FileExplorer窗口变小问题
+let g:miniBufExplorerMoreThanOne=2
+" buffer切换循环
+let g:miniBufExplCycleArround=1
 " normal模式下<Tab>移动到下一个buffer，<C-Tab>上一个
 nnoremap <silent> <Tab> :bn<CR>
 nnoremap <silent> <C-Tab> :bp<CR>
-" 不要在不可编辑内容的窗口（如TagList）中打开选中的buffer
-"let g:miniBufExplModSelTarget = 1"
 
 
 """"""""""""""""""""""""""""""""""
-" 自动补全
+" ctrlp配置
 """"""""""""""""""""""""""""""""""
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-" 显示函数参数列表 
-let OmniCpp_ShowPrototypeInAbbr = 1
-" 输入 .  后自动补全
-let OmniCpp_MayCompleteDot = 1
-" 输入 -> 后自动补全 
-let OmniCpp_MayCompleteArrow = 1
-" 输入 :: 后自动补全 
-let OmniCpp_MayCompleteScope = 1
-" 设置默认命名空间
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-
-" 命令行补全使用增强模式
-set wildmenu
-" 补全时显示样式为多行
-set wildmode=list:full
-    " 版本控制
-set wildignore+=.hg,.git,.svn
-    " Python 字节码
-set wildignore+=*.pyc
-    " Vim 交换文件
-set wildignore+=*.sw?
-    " LaTeX 文件
-set wildignore+=*.aux,*.out,*.toc
-    " 二进制图像
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
-    " 已编译的对象文件
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest
-    " OSX 糟糕物
-set wildignore+=*.DS_Store
-
-" <C-N>自动补全时扫描当前缓冲区，字典，当前文件包含的头文件，标签补全
-set complete=.,k,i,t
-" 弹出补全菜单
-set completeopt=menuone,menu,preview
-" 离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-" 根据文件类型使用相对应的自动补全函数
-autocmd FileType c set omnifunc=ccomplete#Complete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-"autocmd FileType sql set omnifunc=sqlcomplete#Completesql
-"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-"autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-"autocmd FileType ruby set omnifunc=rubycomplete#Completeruby
-
-" 括号及引号自动补全
-inoremap { {<CR>}<ESC>O
+" 设置CtrlP的本地工作目录，0代表不设置该功能
+let g:ctrlp_working_path_mode=0
+" ctrlp窗口在底部
+let g:ctrlp_match_window_bottom=1
+" ctrlp窗口最大高度为15行
+let g:ctrlp_max_height=15
+" 窗口
+let g:ctrlp_match_window_reversed=0
+" 最近打开的文件的个数
+let g:ctrlp_mruf_max=500
+" 记录但去掉重复的软链接
+let g:ctrlp_follow_symlinks=1
+" <Ctrl-f>启动文件查找
+let g:ctrlp_map = '<c-f>'
+" Ctrlp启动文件查找
+let g:ctrlp_cmd = 'CtrlP'
+" 相当于mru功能，show recently opened files
+map <c-p> :CtrlPMRU<CR>
+" 忽略以下文件类型
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+" 忽略以下文件目录
+let g:ctrlp_custom_ignore = {'dir':  '/].(git|hg|svn|rvm)$','file': '(exe|so|dll|zip|tar|tar.gz)$'}
 
 
 """"""""""""""""""""""""""""""""""
-" QuickFix设置
+" rainbow配置
 """"""""""""""""""""""""""""""""""
-" 按下<F2>，执行make
-nnoremap <F2> :TlistToggle<CR> :make<CR><CR><CR> :copen<CR> :TlistToggle<CR>
-" 按下<F12>，执行make clean
-nnoremap <F12> :make clean<CR><CR><CR> :cclose<CR>
-" 按下<F3>，光标移到上一个错误所在的行
-nnoremap <F3> :cp<CR>
-" 按下<F4>，光标移到下一个错误所在的行
-nnoremap <F4> :cn<CR>
+" rainbow激活
+let g:rainbow_active = 1
 
 
-" reopening a file 打开文件自动定位到文章末尾
-"au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+""""""""""""""""""""""""""""""""""
+" syntastic配置
+""""""""""""""""""""""""""""""""""
+" 首次打开和保存时都要进行语义检查
+let g:syntastic_check_on_open = 1  
+" 设置错误提示符'x'
+let g:syntastic_error_symbol = 'x'  
+" 设置警告提示符'!'
+let g:syntastic_warning_symbol = '!'  
+" 当鼠标放在错误行则显示错误信息
+let g:syntastic_enable_balloons = 1  
+" 保存退出时不用进行语义检测
+let g:syntastic_check_on_wq = 0
+" 编译有误则错误窗口显示，否在不显示
+let g:syntastic_auto_loc_list = 1
+" 错误总会填充到错误窗口
+let g:syntastic_always_populate_loc_list = 1
+
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 
-"set hidden " Hide buffers when they are abandoned
-"set previewwindow " 标识预览窗口
+
+
+""""""""""""""""""""""""""""""""""
+" YouCompleteMe配置
+""""""""""""""""""""""""""""""""""
+" 设置YCM配置文件的路径
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" 开启关键字语法检测
+let g:ycm_seed_identifiers_with_syntax = 1 
+" 自动触发补全
+let g:ycm_auto_trigger = 1 
+" YCM触发的条件
+let g:ycm_semantic_triggers = {  
+\ 'c' : ['->' , '.'],
+\ 'cpp,objcpp' : ['->','.','::'],
+\ 'java,javascript,python,scala' : ['.'],
+\ 'ruby' : ['.','::'],
+\}
+" 不用每次询问.ycm_extra_conf.py位置
+let g:ycm_confirm_extra_conf=0
+" YCM也从tags文件中收集标识符
+let g:ycm_collect_identifiers_from_tags_files=1
+" 当输入注释的时候不用弹出提示
+let g:ycm_complete_in_comments=0
+" 当输入字符的时候弹出提示
+let g:ycm_complete_in_strings=1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -345,18 +495,21 @@ let g:vimmarkdownfoldingdisabled=1 "取消代码折叠
 let g:vimmarkdownnodefaultkeymappings=1 "取消默认的键对应
 let g:vimmarkdownmath=1 "使用数学符号
 let g:vimmarkdownfrontmatter=1 "高亮YMAL frontmatter
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+
+
+
+
+
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""
 " undo
 """"""""""""""""""""""""""""""""""""""""""""
-" （1）编程缩进，形如
-" if(condition){
-"   int t=10;
-" }
+" （1）vundle 为嘛filetype off
 " （2）利用vundle管理插件，可以将状态栏多彩化
-" （3）尝试用tagbar替换taglist
 " （4）尝试exvim
 " （5）尝试cscope代替ctags
 " （6）nerdtree代替fileexplore
+
