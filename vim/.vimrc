@@ -181,6 +181,8 @@ autocmd BufNewFile *.md     0r  ~/.vim/template/markdown.md
 autocmd BufNewFile *.py     0r  ~/.vim/template/python.py
 " shell模板
 autocmd BufNewFile *.sh     0r  ~/.vim/template/shell.sh
+" C模板
+autocmd BufNewFile *.c     0r  ~/.vim/template/c.c
 "autocmd BufNewFile *.tex    0r  ~/.vim/template/latex.tex
 "autocmd BufNewFile *.html   0r  ~/.vim/template/html.html
 
