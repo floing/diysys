@@ -190,6 +190,46 @@ autocmd GUIEnter * simalt ~x
 
 
 
+""""""""""""""""""""""""""""""""""e
+" 对不同的程序文件执行不同的编译&运行/调试命令
+""""""""""""""""""""""""""""""""""
+map <F5> :call CompileRun()<CR><CR>
+func! CompileRun()
+    exec "w"
+    " c程序
+    if &ft == "c"
+        exec "!gcc % -o %<"
+        exec "!./%<"
+    endif
+    " c++程序
+    if &ft == "cpp"
+        exec "!g++ % -o %<"
+        exec "!./%<"
+    endif
+    " python
+    if &ft == "py"
+        exec "!python %"
+    endif
+    " shell
+    if &ft == "sh"
+        exec "!chmod a+x %"
+        exec "!./%"
+    endif
+endfunc
+
+map <F4> :call Debug()<CR><CR>
+func! Debug()
+    exec "w"
+    if &ft == "c"
+        exec "!gcc % -o %< -gstabs+"
+        exec "!gdb %<"
+    endif
+    if &ft == "cpp"
+        exec "!g++ % -o %< -gstabs+"
+        exec "!gdb %<"
+    endif
+endfunc
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
@@ -261,6 +301,9 @@ Plugin 'Valloric/YouCompleteMe'
 
 " python集成开发
 Plugin 'Python-mode-klen'
+
+" vimgdb-for-vim7.4
+Plugin 'larrupingpig/vimgdb-for-vim7.4'
 
 """"""""""""""""""""""""""""""""""
 " Vundle插件安装样例:
