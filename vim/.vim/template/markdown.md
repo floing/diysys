@@ -15,4 +15,4 @@ details
 1. [文献1][ref_label]
 
 
-[ref_label] http://siteurl
+[ref_label]: http://siteurl

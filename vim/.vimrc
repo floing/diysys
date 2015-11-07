@@ -198,7 +198,7 @@ func! CompileRun()
     exec "w"
     " c程序
     if &ft == "c"
-        exec "!gcc % -o %<"
+        exec "!gcc % -o %< -lm"
         exec "!./%<"
     endif
     " c++程序

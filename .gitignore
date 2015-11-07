@@ -4,3 +4,4 @@
 *.pyc
 vim/.vim/tags/glibc-2.22/*
 vim/.vim/bundle/*
+java/src/*
