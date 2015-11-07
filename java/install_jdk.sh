@@ -4,7 +4,7 @@
 # Gmail:	haojunyu2012@gmail.com
 # detail:	此脚本用于jdk的配置安装，目前仅适用于ubuntu版本
 
-# jdk文件名称，该文件位于source文件夹中
+# jdk文件名称，该文件位于src文件夹中
 jdk_file=jdk-8u66-linux-x64.gz
     # 66根据文件中8u66而来
 jdk_version=jdk1.8.0_66
