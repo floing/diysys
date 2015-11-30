@@ -1,0 +1,15 @@
+# ~/.vim/UltiSnips/markdown.snippets
+
+## head
+snippet head "Jekyll post header" b
+---
+layout:		default
+title:		${1:blog_name}
+category:	[${2:cate1,cate2}]
+comments:	true
+date:		`!v strftime("%Y-%m-%d %H:%M:%S")`
+---
+${0}
+
+endsnippet
+# vim:ft=snippets:

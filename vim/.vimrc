@@ -21,7 +21,7 @@ set mouse=a
 " history存储长度
 set history=1000
 " 粘贴时保持格式
-set paste
+" set paste
 " 当文件被改动时自动载入
 set autoread
 " 自动把内容写回文件
@@ -228,6 +228,9 @@ func! Debug()
         exec "!g++ % -o %< -gstabs+"
         exec "!gdb %<"
     endif
+    if &ft == "py"
+        exec "!python -m pdb %"
+    endif
 endfunc
 
 
@@ -300,10 +303,21 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 
 " python集成开发
-Plugin 'Python-mode-klen'
+" Plugin 'Python-mode-klen'
 
 " vimgdb-for-vim7.4
 Plugin 'larrupingpig/vimgdb-for-vim7.4'
+
+" ultisnips
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine
+Plugin 'honza/vim-snippets'
+
+" vim-markdown依赖
+Plugin 'godlygeek/tabular'
+" vim-markdown
+Plugin 'plasticboy/vim-markdown'
+
 
 """"""""""""""""""""""""""""""""""
 " Vundle插件安装样例:
@@ -476,8 +490,6 @@ let g:syntastic_always_populate_loc_list = 1
 " set statusline+=%*
 
 
-
-
 """"""""""""""""""""""""""""""""""
 " YouCompleteMe配置
 """"""""""""""""""""""""""""""""""
@@ -504,38 +516,24 @@ let g:ycm_complete_in_comments=0
 let g:ycm_complete_in_strings=1
 
 
+""""""""""""""""""""""""""""""""""
+" ultisnips配置
+""""""""""""""""""""""""""""""""""
+" 如果使用了Valloric/YouCompleteMe,就别设置为<tab>
+let g:UltiSnipsExpandTrigger="<c-j>"
+" 向后选片段中的变量
+let g:UltiSnipsJumpForwardTrigger="<C-l>"
+" 向前选片段中的变量
+let g:UltiSnipsJumpBackwardTrigger="<C-h>"
+" 使用:UltiSnipsEdit打开片段定义文件时分屏位置
+let g:UltiSnipsEditSplit="vertical"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"-- markdown --
+""""""""""""""""""""""""""""""""""
+" vim-markdown配置
+""""""""""""""""""""""""""""""""""
+" vim识别md
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 let g:vimmarkdownfoldingdisabled=1 "取消代码折叠
 let g:vimmarkdownnodefaultkeymappings=1 "取消默认的键对应
 let g:vimmarkdownmath=1 "使用数学符号
