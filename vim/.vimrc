@@ -195,7 +195,7 @@ autocmd GUIEnter * simalt ~x
 """"""""""""""""""""""""""""""""""
 map <F5> :call CompileRun()<CR><CR>
 func! CompileRun()
-    exec "w"
+    exec "w!"
     " c程序
     if &ft == "c"
         exec "!gcc % -o %< -lm"
@@ -207,8 +207,9 @@ func! CompileRun()
         exec "!./%<"
     endif
     " python
-    if &ft == "py"
+    if &ft == "python"
         exec "!python %"
+        exec "!echo 'Press any key to continue...'"
     endif
     " shell
     if &ft == "sh"
@@ -228,10 +229,11 @@ func! Debug()
         exec "!g++ % -o %< -gstabs+"
         exec "!gdb %<"
     endif
-    if &ft == "py"
+    if &ft == "python"
         exec "!python -m pdb %"
     endif
 endfunc
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -302,11 +304,9 @@ Plugin 'scrooloose/syntastic'
 " 自动补全
 Plugin 'Valloric/YouCompleteMe'
 
-" python集成开发
-" Plugin 'Python-mode-klen'
-
 " vimgdb-for-vim7.4
 Plugin 'larrupingpig/vimgdb-for-vim7.4'
+
 
 " ultisnips
 Plugin 'SirVer/ultisnips'
@@ -317,6 +317,9 @@ Plugin 'honza/vim-snippets'
 Plugin 'godlygeek/tabular'
 " vim-markdown
 Plugin 'plasticboy/vim-markdown'
+
+" python集成开发
+" Plugin 'klen/python-mode'
 
 
 """"""""""""""""""""""""""""""""""
@@ -517,6 +520,14 @@ let g:ycm_complete_in_strings=1
 
 
 """"""""""""""""""""""""""""""""""
+" vim-debug配置(for python/php)
+""""""""""""""""""""""""""""""""""
+" debugger快捷键设置
+
+
+
+
+""""""""""""""""""""""""""""""""""
 " ultisnips配置
 """"""""""""""""""""""""""""""""""
 " 如果使用了Valloric/YouCompleteMe,就别设置为<tab>
@@ -530,6 +541,34 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 """"""""""""""""""""""""""""""""""
+" tabular配置
+"""""""""""""""""""""""""""""""""
+" if exists(":Tabularize")
+    " nmap <leader>a= :Tabularize /=<CR>
+    " vmap <leader>a= :Tabularize /=<CR>
+    " nmap <leader>a: :Tabularize /:\zs<CR>
+    " vmap <leader>a: :Tabularize /:\zs<CR>
+" endif
+
+" inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
+
+" function! s:align()
+    " let p = '^\s*|\s.*\s|\s*$'
+    " if exists(':Tabularize') &amp;&amp; getline('.') =~# '^\s*|' &amp;&amp;
+        " (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+        " let column =
+        " strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+        " let position =
+        " strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+        " Tabularize/|/l1
+        " normal! 0
+        " call
+        " search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+    " endif
+" endfunction
+
+
+""""""""""""""""""""""""""""""""""
 " vim-markdown配置
 """"""""""""""""""""""""""""""""""
 " vim识别md
@@ -540,6 +579,17 @@ let g:vimmarkdownmath=1 "使用数学符号
 let g:vimmarkdownfrontmatter=1 "高亮YMAL frontmatter
 
 
+""""""""""""""""""""""""""""""""""
+" python-mode配置
+""""""""""""""""""""""""""""""""""
+" 跳转到定义：
+" let g:pymode_rope_goto_definition_bind = "<C-g>"
+
+" 运行当前python文件
+" let g:pymode_run_bind = "<F6>"
+
+" 查看python帮助文档
+" let g:pymode_doc_bind = "<C-k>"
 
 
 
