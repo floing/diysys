@@ -13,7 +13,7 @@ then
     # ctags
     sudo apt-get install exuberant-ctags
     # YouCompleteMe
-    sudo apt-get install clang llvm cmake xz-utils
+    sudo apt-get install clang llvm cmake xz-utils python python-dev
 fi
 
 # 备份原来配置文件
