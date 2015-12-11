@@ -26,3 +26,9 @@ ln `pwd`/.vimrc $HOME/
 ln -s `pwd`/.vim $HOME/.vim
 
 # 配置插件
+vi install -c "PluginInstall" -c "q" -c "q!"
+
+pushd .vim/bundle/YouCompleteMe
+YCM_CORES=1 ./install.py --clang-completer
+popd
+
