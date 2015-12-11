@@ -12,13 +12,13 @@ if which apt-get > /dev/null; then
     #  preparating  #
     #################
     #更新软件源
-    # sudo apt-get update 
+    sudo apt-get update 
     ##升级系统的软件，该命令会根据依赖关系对一些依赖文件进行删除和安装(sudo apt-get upgrade 对于依赖关系变更的软件不更新)
-    # sudo apt-get dist-upgrade
+    sudo apt-get dist-upgrade
     # 删除系统不再使用的孤立软件--危险太大，在安装自己软件之前运行一下还是可以的。
-    # sudo apt-get autoremove
+    sudo apt-get autoremove
     #更新语言包--安装中文
-    # sudo apt-get install  language-pack-zh-hans
+    sudo apt-get install  language-pack-zh-hans
 
 
     ############################
