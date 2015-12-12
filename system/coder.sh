@@ -42,7 +42,7 @@ if which apt-get > /dev/null; then
         pushd stardict
         sudo ./addWinFonts.sh
         popd
-        rm -r addWinFonts
+        sudo rm -r addWinFonts
     echo "Tex is installed!"
 
 

@@ -18,7 +18,7 @@ if which apt-get > /dev/null; then
     # 删除系统不再使用的孤立软件--危险太大，在安装自己软件之前运行一下还是可以的。
     sudo apt-get autoremove
     #更新语言包--安装中文
-    sudo apt-get install  language-pack-zh-hans
+    sudo apt-get install -y language-pack-zh-hans
 
 
     ############################
@@ -56,7 +56,7 @@ if which apt-get > /dev/null; then
         pushd stardict
         sudo ./installDicPro.sh
         popd
-        rm -r stardict
+        sudo rm -r stardict
     echo "Stardict is installed!"
 
     #安装atom--黑客级的文本编辑器
