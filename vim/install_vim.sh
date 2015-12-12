@@ -9,11 +9,11 @@
 if which apt-get > /dev/null
 then
     # 基本配置
-	sudo apt-get install vim vim-scripts vim-doc
+    sudo apt-get install -y  vim vim-scripts vim-doc
     # ctags
-    sudo apt-get install exuberant-ctags
+    sudo apt-get install -y exuberant-ctags
     # YouCompleteMe
-    sudo apt-get install clang llvm cmake xz-utils python python-dev
+    sudo apt-get install -y clang llvm cmake xz-utils python python-dev
 fi
 
 # 备份原来配置文件
@@ -28,7 +28,7 @@ ln -s `pwd`/.vim $HOME/.vim
 # 配置插件
 vi install -c "PluginInstall" -c "q" -c "q!"
 
-pushd .vim/bundle/YouCompleteMe
+pushd $HOME/.vim/bundle/YouCompleteMe
 YCM_CORES=1 ./install.py --clang-completer
 popd
 
