@@ -39,7 +39,7 @@ if which apt-get > /dev/null; then
 	    #安装win下的字体
         wget -qcO addWinFonts.tar.gz "http://sh-btfs.yun.ftn.qq.com/ftn_handler/468d04714a9054927045abc97273a0d8ca22a3c9d7b11b452a9c5eb1ba59579a/?fname=addWinFonts.tar.gz&from=30111&version=2.0.0.2&uin=1064146151"
         tar -zxvf addWinFonts.tar.gz
-        pushd stardict
+        pushd addWinFonts
         sudo ./addWinFonts.sh
         popd
         sudo rm -r addWinFonts
