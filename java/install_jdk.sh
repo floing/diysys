@@ -18,7 +18,7 @@ if [ ! -d "/usr/lib/jvm" ]
 then
     sudo mkdir /usr/lib/jvm
 fi
-sudo tar zxvf src/$jdk_file -C /usr/lib/jvm
+sudo tar zxvf $jdk_file -C /usr/lib/jvm
 
 # 在~/.bashrc文件中添加环境变量
 export JAVA_HOME=/usr/lib/jvm/$jdk_version

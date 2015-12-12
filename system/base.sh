@@ -54,7 +54,7 @@ if which apt-get > /dev/null; then
         wget -qcO stardict.tar.gz "http://sh-btfs.yun.ftn.qq.com/ftn_handler/da549824d8062cc796b3fcba60821bcc798b0a7cad6d0a8648816a067e47f8c7/?fname=stardict.tar.gz&from=30111&version=2.0.0.2&uin=1064146151"
         tar -zxvf stardict.tar.gz
         pushd stardict
-        sudo sh installDicPro.sh
+        sudo ./installDicPro.sh
         popd
         rm -r stardict
     echo "Stardict is installed!"
