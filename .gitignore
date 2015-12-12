@@ -4,7 +4,7 @@
 *.pyc
 vim/.vim/tags/glibc-2.22/*
 vim/.vim/bundle/*
-!vim/.vim/bundle/vundle/*
+!vim/.vim/bundle/Vundle.vim/*
 java/src/*
 system/*.log
 *.tar.gz
