@@ -317,6 +317,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'godlygeek/tabular'
 " vim-markdown
 Plugin 'plasticboy/vim-markdown'
+" vim-instant-markdown
+Plugin 'suan/vim-instant-markdown'
 
 " python集成开发
 " Plugin 'klen/python-mode'

@@ -1,5 +1,6 @@
 *~
 *.swp
+*.lock
 .ubuntu_mirrors*
 *.pyc
 vim/.vim/bundle/*
@@ -8,3 +9,4 @@ java/src/*
 system/*.log
 *.tar.gz
 *.deb
+*.zip

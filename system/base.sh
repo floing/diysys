@@ -28,6 +28,13 @@ if which apt-get > /dev/null; then
     sudo apt-get install -y chromium-borwser pepperflashplugin
     echo "Chromium is installed!"
 
+    # 翻墙XX-Net（Github）
+    sudo apt-get install -y libnss3-tools python-gtk2 python-OpenSSL libffi-dev
+    sudo apt-get install -y python-pip python-dev build-essential
+    sudo pip install --upgrade pip
+    sudo pip install cryptography
+    echo "depended lib is installed."
+
     #安装压缩工具7zip
     sudo apt-get install -y p7zip-full
     echo "7zip is installed!"

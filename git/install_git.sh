@@ -8,9 +8,40 @@
 if which apt-get > /dev/null; then
     echo "You are using Ubuntu!"
     
-    #安装osdlyrics--方便rhythmbox显示歌词
-    wget -qO osdlyrics.deb "http://cd-btfs.yun.ftn.qq.com/ftn_handler/06cb35e1d0ee3f5dd32a1a8b9602c2365df580867f4c9f4751ce2f775f863494/?fname=osdlyrics_0.4.3-1~precise1_amd64.deb&from=30111&version=2.0.0.2&uin=1064146151"
-    echo "change your lyrics path!"
+    # 安装git
+    sudo apt-get install -y git unzip
+    wget -qO git_config.zip "http://sh-btfs.yun.ftn.qq.com/ftn_handler/1dda77f7d1c2286fa5735f65e8b9edeaa31bb62d699735893292b034efb5ddce/?fname=git_config.zip&from=30111&version=2.0.0.2&uin=1064146151"
+    unzip git_config.zip
+    if [ ! -d "~/.ssh"]
+    then
+        mkdir "~/.ssh"
+    fi
+    mv github ~/.ssh/
+    mv github.pub ~/.ssh
+    mv known_hosts ~/.ssh
+    git config --global user.name "haojunyu"
+    git config --global user.email "haojunyu2012@gmail.com"
+    git config --global push.default simple
+    git remote add gitcafe https://gitcafe.com/haojunyu/haojunyu.git
+    echo "Git is installed!"
+    
+    # jekyll配置
+    sudo apt-get install -y ruby2.0 ruby2.0-dev
+    pushd /usr/bin/
+    sudo ln -sf ruby2.0 ruby
+    sudo ln -sf gem2.0 gem
+    sudo ln -sf erb2.0 erb
+    sudo ln -sf irb2.0 irb
+    sudo ln -sf rake2.0 rake
+    sudo ln -sf rdoc2.0 rdoc
+    sudo ln -sf testrb2.0 testrb
+    popd
+    gem sources --remove https://rubygems.org
+    gem sources -a https://ruby.taobao.org
+    sudo gem install bundler
+    sudo apt-get install -y libxslt1-dev libxml2-dev zlib1g-dev
+    bundle install
+    echo "Jekyll is installed!"
     
 
 elif which yum > /dev/null; then
