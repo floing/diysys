@@ -19,9 +19,12 @@ if which apt-get > /dev/null; then
     mv github ~/.ssh/
     mv github.pub ~/.ssh
     mv known_hosts ~/.ssh
+    echo "https://haojunyu:Hjy928928@github.com" >> ~/.git-credentials
+    echo "https://haojunyu:Hjy928928@gitcafe.com" >> ~/.git-credentials
     git config --global user.name "haojunyu"
     git config --global user.email "haojunyu2012@gmail.com"
     git config --global push.default simple
+    git config --global credential.helper store
     git remote add gitcafe https://gitcafe.com/haojunyu/haojunyu.git
     echo "Git is installed!"
     
