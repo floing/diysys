@@ -186,8 +186,6 @@ autocmd BufNewFile *.c     0r  ~/.vim/template/c.c
 "autocmd BufNewFile *.tex    0r  ~/.vim/template/latex.tex
 "autocmd BufNewFile *.html   0r  ~/.vim/template/html.html
 
-autocmd GUIEnter * simalt ~x
-
 
 
 """"""""""""""""""""""""""""""""""e

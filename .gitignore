@@ -10,3 +10,4 @@ system/*.log
 *.tar.gz
 *.deb
 *.zip
+*.DS_Store
