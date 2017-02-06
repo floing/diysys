@@ -37,12 +37,11 @@ set fileencodings=utf-8,ucs-bom,cp936,gb2312,gbk,gb18030,big5,euc-jp,euc-kr,lati
 "set ambiwidth=double
 
 
-
 """"""""""""""""""""""""""""""""""
 " 外观配置
 """"""""""""""""""""""""""""""""""
 " elflord/ron/peachpuff/default/... 设置配色方案，vim自带的配色方案保存在/usr/share/vim/vim74/colors目录下
-colorscheme peachpuff 
+colorscheme peachpuff
 " colorscheme solarized
 " 设置字体
 set guifont=Courier\ 12
@@ -68,7 +67,7 @@ set linebreak
 set whichwrap=b,s,<,>,[,]
 " TAB和空格可见（显示方便）
 set list
-" TAB为>---，空格为-
+" TAB为>-，空格为-
 set listchars=tab:>-,trail:-
 
 " 设置折叠文本
@@ -88,11 +87,11 @@ set laststatus=2
 " 状态栏显示
 set statusline=
     " 正常高亮显示缓冲区号,占三个字符
-set statusline+=%3*%-3.3n\ 
+set statusline+=%3*%-3.3n\
     " User{3}高亮显示文件名
-set statusline+=%0*%f\ 
+set statusline+=%0*%f\
     " User{2}高亮显示缓冲区标志：帮助|修改|只读|预览窗口
-set statusline+=%2*%h%m%r%w\ 
+set statusline+=%2*%h%m%r%w\
     " 正常高亮显示
 set statusline+=%2*[
     " vim版本高于6.0
@@ -109,11 +108,11 @@ if filereadable(expand("$HOME/.vim/plugin/vimbuddy.vim"))
     set statusline+=%0*\ %{VimBuddy()}
 endif
     " User{2}高亮显示时间
-set statusline+=%2*\ %-16{strftime(\"%Y-%m-%d\ %H:%M\")}\ 
+set statusline+=%2*\ %-16{strftime(\"%Y-%m-%d\ %H:%M\")}\
     " 左对齐和右对齐项目之间的分割点
 set statusline+=%0*%=
     " 正常高亮显示光标所在字符的值（十六进制）
-set statusline+=0x%-4B\ 
+set statusline+=0x%-4B\
     " 正常高亮显示光标所在的位置（行，列-虚拟列 行数百分百）
 set statusline+=%-10.(%l,%c%V%)\ %<%P
 
@@ -127,11 +126,11 @@ set showmode
 " 缩进配置
 """"""""""""""""""""""""""""""""""
 " 设置制表符（tab键）的宽度
-set tabstop=4
+set tabstop=2
 " 插入tab符号以空格替换（通用）
 set expandtab
-" （自动）缩进使用4个空格
-set shiftwidth=4
+"（自动）缩进使用2个空格
+set shiftwidth=2
 
 " 设置自动对齐（缩进）：即每行的缩进值与上一行相等
 set autoindent
@@ -140,7 +139,7 @@ set smarttab
 " 开启c程序缩进
 " set cindent
 "设置C/C++语言的具体缩进方式
-" set cinoptions={0,1s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s 
+" set cinoptions={0,1s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s
 
 
 """"""""""""""""""""""""""""""""""
@@ -162,7 +161,7 @@ set smartcase
 """"""""""""""""""""""""""""""""""
 " 如果支持语法高亮，则开启
 if has("syntax")
-	syntax on
+  syntax on
 endif
 " 高亮匹配括号
 set showmatch
@@ -303,7 +302,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 
 " vimgdb-for-vim7.4
-Plugin 'larrupingpig/vimgdb-for-vim7.4'
+" Plugin 'larrupingpig/vimgdb-for-vim7.4'
 
 
 " ultisnips
@@ -340,7 +339,7 @@ Plugin 'suan/vim-instant-markdown'
 """"""""""""""""""""""""""""""""""
 
 " 所有插件的添加在end之前[必须]
-call vundle#end()            
+call vundle#end()
 " 文件类型对应的插件[必须]（/usr/share/vim/vim74/ftplugin.vim）
 filetype plugin on
 " 文件类型对应的缩进文件
@@ -474,13 +473,13 @@ let g:rainbow_active = 1
 " syntastic配置
 """"""""""""""""""""""""""""""""""
 " 首次打开和保存时都要进行语义检查
-let g:syntastic_check_on_open = 1  
+let g:syntastic_check_on_open = 1
 " 设置错误提示符'x'
-let g:syntastic_error_symbol = 'x'  
+let g:syntastic_error_symbol = 'x'
 " 设置警告提示符'!'
-let g:syntastic_warning_symbol = '!'  
+let g:syntastic_warning_symbol = '!'
 " 当鼠标放在错误行则显示错误信息
-let g:syntastic_enable_balloons = 1  
+let g:syntastic_enable_balloons = 1
 " 保存退出时不用进行语义检测
 let g:syntastic_check_on_wq = 0
 " 编译有误则错误窗口显示，否在不显示
@@ -499,11 +498,11 @@ let g:syntastic_always_populate_loc_list = 1
 " 设置YCM配置文件的路径
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 " 开启关键字语法检测
-let g:ycm_seed_identifiers_with_syntax = 1 
+let g:ycm_seed_identifiers_with_syntax = 1
 " 自动触发补全
-let g:ycm_auto_trigger = 1 
+let g:ycm_auto_trigger = 1
 " YCM触发的条件
-let g:ycm_semantic_triggers = {  
+let g:ycm_semantic_triggers = {
 \ 'c' : ['->' , '.'],
 \ 'cpp,objcpp' : ['->','.','::'],
 \ 'java,javascript,python,scala' : ['.'],
@@ -594,6 +593,14 @@ let g:vimmarkdownfrontmatter=1 "高亮YMAL frontmatter
 
 
 
+""""""""""""""""""""""""""""""""""
+" 被插件掩盖后重新设置的命令
+""""""""""""""""""""""""""""""""""
+" 为某些类型的文件设置tab的表现
+if has("autocmd")
+  autocmd FileType python setlocal tabstop=2 shiftwidth=2 expandtab
+endif
+
 
 
 
@@ -605,4 +612,3 @@ let g:vimmarkdownfrontmatter=1 "高亮YMAL frontmatter
 " （4）尝试exvim
 " （5）尝试cscope代替ctags
 " （6）nerdtree代替fileexplore
-
