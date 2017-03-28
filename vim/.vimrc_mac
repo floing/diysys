@@ -195,13 +195,13 @@ func! CompileRun()
     exec "w!"
     " c程序
     if &ft == "c"
-        exec "!gcc % -o %< -lm"
-        exec "!./%<"
+        exec "!gcc % -o %<.a -lm"
+        exec "!./%<.a"
     endif
     " c++程序
     if &ft == "cpp"
-        exec "!g++ % -o %<"
-        exec "!./%<"
+        exec "!g++ % -o %<.a"
+        exec "!./%<.a"
     endif
     " python
     if &ft == "python"
@@ -219,12 +219,12 @@ map <F4> :call Debug()<CR><CR>
 func! Debug()
     exec "w"
     if &ft == "c"
-        exec "!gcc % -o %< -gstabs+"
-        exec "!gdb %<"
+        exec "!gcc -g % -o %<.a"
+        exec "!gdb %<.a"
     endif
     if &ft == "cpp"
-        exec "!g++ % -o %< -gstabs+"
-        exec "!gdb %<"
+        exec "!g++ -g % -o %<.a"
+        exec "!gdb %<.a"
     endif
     if &ft == "python"
         exec "!python -m pdb %"
@@ -397,6 +397,52 @@ set tags+=~/.vim/tags/gctag
 "set tags+=~/.vim/tags/gcctag
 " 添加c++标签文件
 "set tags+=~/.vim/tags/cpptag
+
+
+""""""""""""""""""""""""""""""""""
+" cscope配置
+""""""""""""""""""""""""""""""""""
+if has("cscope")
+  " 设置cscope的命令位置
+  set csprg=/usr/local/bin/cscope
+  " 设定quickfix来显示cscope的结果
+  set cscopequickfix=s-,c-,d-,i-,t-,e-
+  " 先搜索tags标签文件，在搜索cscope数据库
+  set csto=1
+  " 使用cstag查询，也就是同时搜索cscope数据库和tags标签文件
+  set cst
+  " 不显示添加数据库是否成功
+  set nocsverb
+  "
+  if filereadable("cscope.out")
+    " 添加当前目录下的cscope数据库
+    cs add cscope.out
+  else
+    " 添加vim自带的cscope数据库
+    " gnu c 数据库
+    cs add ~/.vim/tags/glibc-2.22/cscope.out ~/.vim/tags/glibc-2.22
+  endif
+  " 显示添加数据库成功
+  set csverb
+endif
+
+" 映射快捷键"<C-_>g的按法是先按"Ctrl+Shift+-", 然后很快再按"g"
+" 查找本 C 符号（可以跳过注释）
+nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+"查找本定义
+nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+"查找调用本函数的函数
+nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+"查找本字符串
+nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+"查找本 egrep 模式
+nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+"查找本文件
+nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+"查找包含本文件的文件
+nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"查找本函数调用的函数
+nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 
 """"""""""""""""""""""""""""""""""
@@ -598,7 +644,7 @@ let g:vimmarkdownfrontmatter=1 "高亮YMAL frontmatter
 """"""""""""""""""""""""""""""""""
 " 为某些类型的文件设置tab的表现
 if has("autocmd")
-  autocmd FileType python setlocal tabstop=2 shiftwidth=2 expandtab
+  autocmd FileType python setlocal tabstop=2 shiftwidth=2 sts=2 expandtab
 endif
 
 
