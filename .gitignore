@@ -5,6 +5,7 @@
 *.pyc
 vim/.vim/bundle/*
 vim/.vim/tags/glibc-2.22/*
+vim/.vim/tags/Python-2.7.13/*
 java/src/*
 system/*.log
 *.tar.gz
