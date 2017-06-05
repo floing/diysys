@@ -1,5 +1,5 @@
-#!/usr/bin/python
-# coding=utf-8
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 # 导入所用模块 -- sys 是常用的模块 
 import sys
