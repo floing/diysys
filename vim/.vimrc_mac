@@ -315,7 +315,10 @@ Plugin 'godlygeek/tabular'
 " vim-markdown
 Plugin 'plasticboy/vim-markdown'
 " vim-instant-markdown
-Plugin 'suan/vim-instant-markdown'
+" Plugin 'suan/vim-instant-markdown'
+" markdown同步显示
+Plugin 'iamcco/mathjax-support-for-mkdp'
+Plugin 'iamcco/markdown-preview.vim'
 
 " python集成开发
 " Plugin 'klen/python-mode'
@@ -622,6 +625,23 @@ let g:vimmarkdownfoldingdisabled=1 "取消代码折叠
 let g:vimmarkdownnodefaultkeymappings=1 "取消默认的键对应
 let g:vimmarkdownmath=1 "使用数学符号
 let g:vimmarkdownfrontmatter=1 "高亮YMAL frontmatter
+let g:vim_markdown_toc_autofit = 1 "激活TOC窗口
+
+""""""""""""""""""""""""""""""""""
+" markdown-preview.vim配置
+""""""""""""""""""""""""""""""""""
+" 设置启动chrome浏览器的命令
+let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+" 设置为1则打开markdown文件时自动打开浏览器
+let g:mkdp_auto_start = 1
+" 设置为1则在编辑markdown的时候预览窗口是否打开，未开则自动打开
+let g:mkdp_auto_open = 1
+" 切换buffer时自动关闭预览窗口，设置为0则在切换buffer时不自动关闭
+let g:mkdp_auto_close = 1
+" 设置为1则只有在保存文件或退出插入模式时更新预览，默认为0，实时更新预览
+let g:mkdp_refresh_slow = 0
+" 设置为1则所有文件都使用MarkdownPreview进行预览，默认只有markdown文件可以
+let g:mkdp_command_for_global = 0
 
 
 """"""""""""""""""""""""""""""""""
