@@ -1,0 +1,7 @@
+[user]
+  name = haojunyu
+  email = haojunyu2012@gmail.com
+[push]
+  default = simple
+[credential]
+  helper = store
