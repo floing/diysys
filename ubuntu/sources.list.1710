@@ -1,0 +1,35 @@
+# deb cdrom:[Ubuntu 16.04 LTS _artful Xerus_ - Release amd64 (20160420.1)]/ artful main restricted
+
+deb-src http://archive.ubuntu.com/ubuntu artful main restricted #Added by software-properties
+
+deb http://mirrors.aliyun.com/ubuntu/ artful main restricted
+
+deb-src http://mirrors.aliyun.com/ubuntu/ artful main restricted multiverse universe #Added by software-properties
+
+deb http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted
+
+deb-src http://mirrors.aliyun.com/ubuntu/ artful-updates main restricted multiverse universe #Added by software-properties
+
+deb http://mirrors.aliyun.com/ubuntu/ artful universe
+
+deb http://mirrors.aliyun.com/ubuntu/ artful-updates universe
+
+deb http://mirrors.aliyun.com/ubuntu/ artful multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ artful-updates multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse
+
+deb-src http://mirrors.aliyun.com/ubuntu/ artful-backports main restricted universe multiverse #Added by software-properties
+
+deb http://archive.canonical.com/ubuntu artful partner
+
+deb-src http://archive.canonical.com/ubuntu artful partner
+
+deb http://mirrors.aliyun.com/ubuntu/ artful-security main restricted
+
+deb-src http://mirrors.aliyun.com/ubuntu/ artful-security main restricted multiverse universe #Added by software-properties
+
+deb http://mirrors.aliyun.com/ubuntu/ artful-security universe
+
+deb http://mirrors.aliyun.com/ubuntu/ artful-security multiverse

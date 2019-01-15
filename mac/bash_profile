@@ -1,15 +1,35 @@
 # .bash_profile
 
-# User specific aliases
-alias vi='mvim -v'
-alias vim='mvim -v'
-alias ll='ls -alh'
-
-# User specific definitions
-export EDITOR="vim"
 
 # Source global definitions
 if [ -f /etc/bashrc ];
 then
 	. /etc/bashrc
 fi
+
+# User specific aliases
+alias vi='mvim -v'
+alias vim='mvim -v'
+alias ll='ls -lhrt'
+
+# User specific definitions
+export EDITOR="vim"   # for crontab -e in mac
+export HOMEBREW_GITHUB_API_TOKEN="69f369c3c9414f5ff09205ba79a24c3bf1c645d9"
+export PATH="/usr/local/opt/openssl/bin:/usr/local/anaconda3/bin:/usr/local/opt/icu4c/sbin:$PATH"
+
+# virtualenvwrapper配置
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+
+# bash-completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+# bash-get
+if [ -f "/Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash" ]; then
+  source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
+fi
+
