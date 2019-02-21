@@ -1,20 +1,19 @@
-FROM ubuntu:latest
+FROM ubuntu:bionic
 LABEL maintainer="haojunyu <haojunyu2012@gmail.com>"
-LABEL version="2.0"
+LABEL version="1.0"
 LABEL description="Base ubuntu:18.04LTS; For Common Coder"
 
+# 换源
+RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak
+ADD sources.list /
+RUN mv /sources.list /etc/apt/sources.list
+RUN apt-get update && apt list --upgradable
+
 # common
-RUN apt-get update && apt-get install -yq \
-                        python2.7 python-pip htop git wget \
+RUN apt-get install -yq htop git wget \
                         libglib2.0-0 autoconf automake \
                         libtool build-essential unzip \
                         libarchive-dev vim
-
-# nvm,node,npm安装
-wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-source ~/.bashrc
-nvm install node
-npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 # configure vim
 ADD vimrc /

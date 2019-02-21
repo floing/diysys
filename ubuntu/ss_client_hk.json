@@ -1,0 +1,10 @@
+{
+	"server":"47.52.195.5",
+	"server_port":52110,
+	"local_port":"127.0.0.1",
+	"local_port":52111,
+	"password":"hjy520520",
+	"timeout":300,
+	"method":"aes-256-cfb"
+}
+

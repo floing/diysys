@@ -14,7 +14,7 @@ alias ll='ls -lhrt'
 
 # User specific definitions
 export EDITOR="vim"   # for crontab -e in mac
-export HOMEBREW_GITHUB_API_TOKEN="69f369c3c9414f5ff09205ba79a24c3bf1c645d9"
+export HOMEBREW_GITHUB_API_TOKEN="e92cc5e4a47d4a5203ed185011f0b2c7c14ebcbd"
 export PATH="/usr/local/opt/openssl/bin:/usr/local/anaconda3/bin:/usr/local/opt/icu4c/sbin:$PATH"
 
 # virtualenvwrapper配置
@@ -33,3 +33,7 @@ if [ -f "/Library/Developer/CommandLineTools/usr/share/git-core/git-completion.b
   source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
 fi
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion

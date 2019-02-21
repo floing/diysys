@@ -1,0 +1,64 @@
+" """"""""""""""""""""""""""""""""""
+" 基本配置
+" """"""""""""""""""""""""""""""""""
+" 关闭兼容模式，打开Vim的扩展功能
+set nocompatible
+" 启动时不显示援助索马里儿童的提示
+set shortmess=atI
+" 在所有模式都可以使用鼠标
+"set mouse=a
+" history存储长度
+set history=1000
+" 粘贴时保持格式
+" set paste
+" 当文件被改动时自动载入
+set autoread
+" 自动把内容写回文件
+set autowrite
+" 退格键可以处理indent，eol，start
+set backspace=indent,eol,start
+" 文件默认编码
+set encoding=utf-8
+" 检测文件编码顺序
+set fileencodings=utf-8,ucs-bom,cp936,gb2312,gbk,gb18030,big5,euc-jp,euc-kr,latin1
+"防止特殊符号无法显示
+"set ambiwidth=double
+" 设置字体
+set guifont=Courier\ 12
+" 显示行号
+set number
+" 突出显示当前行
+"set cursorline
+" 整词换行
+set linebreak
+" 光标从行首和行末时可以跳到另一行去
+set whichwrap=b,s,<,>,[,]
+" TAB和空格可见（显示方便）
+"set list
+" TAB为>---，空格为-
+"set listchars=tab:>-,trail:-
+" 设置折叠文本
+"set foldenable
+" 设置折叠等级，越大越少的折叠
+"set foldlevel=30
+" 折叠语法高亮
+"set foldmethod=syntax
+" 设置折叠栏宽度
+"set foldcolumn=4
+" 空格展开折叠
+nnoremap <space>  zA
+
+""""""""""""""""""""""""""""""""""
+" 缩进配置
+""""""""""""""""""""""""""""""""""
+" 设置制表符（tab键）的宽度
+set tabstop=4
+" 插入tab符号以空格替换（通用）
+set expandtab
+" （自动）缩进使用4个空格
+set shiftwidth=4
+" 设置自动对齐（缩进）：即每行的缩进值与上一行相等
+set autoindent
+" 开启新行时使用智能自动缩进
+set smarttab
+
