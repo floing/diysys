@@ -11,11 +11,14 @@ fi
 alias vi='mvim -v'
 alias vim='mvim -v'
 alias ll='ls -lhrt'
+### proxy list
+#alias proxy='export all_proxy=socks5://127.0.0.1:1080'
+#alias unproxy='unset all_proxy'
 
 # User specific definitions
 export EDITOR="vim"   # for crontab -e in mac
-export HOMEBREW_GITHUB_API_TOKEN="e92cc5e4a47d4a5203ed185011f0b2c7c14ebcbd"
-export PATH="/usr/local/opt/openssl/bin:/usr/local/anaconda3/bin:/usr/local/opt/icu4c/sbin:$PATH"
+export HOMEBREW_GITHUB_API_TOKEN="b27b037b6f57b07a7c3394a6d0695120311d45aa"
+export PATH="/usr/local/sbin:/usr/local/opt/openssl/bin:/usr/local/anaconda3/bin:/usr/local/opt/icu4c/sbin:$PATH"
 
 # virtualenvwrapper配置
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
@@ -37,3 +40,4 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
