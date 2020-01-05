@@ -1,0 +1,487 @@
+# self
+Host self
+  HostName  123.56.231.83
+  Port      22
+  User      haojunyu
+  IdentityFile ~/.ssh/id_rsa
+Host vir
+  HostName  172.16.235.128
+  Port      22
+  User      hxjmy
+  IdentityFile ~/.ssh/id_rsa
+Host coder
+  HostName  172.16.235.135
+  Port      22
+  User      hjy
+  IdentityFile ~/.ssh/id_rsa
+Host home
+  HostName  192.168.1.4
+  Port      22
+  User      hjy
+  IdentityFile ~/.ssh/id_rsa
+Host tx
+  HostName  122.51.32.103
+  Port      22
+  User      ubuntu
+  IdentityFile ~/.ssh/id_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host ali
+  HostName  106.15.203.18
+  Port      222
+  User      hjy
+  IdentityFile ~/.ssh/id_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host ehome
+  HostName  106.15.203.18
+  Port      8822
+  User      hjy
+  IdentityFile ~/.ssh/id_rsa
+Host hk_root
+  HostName  47.52.195.5
+  Port      22
+  User      root
+  IdentityFile ~/.ssh/id_rsa
+Host hk
+  HostName  47.52.195.5
+  Port      22
+  User      hjy
+  IdentityFile ~/.ssh/id_rsa
+  GSSAPIAuthentication no
+Host hk_jump 
+  HostName  47.52.195.5
+  Port      22
+  User      hjy
+  IdentityFile ~/.ssh/id_rsa
+  ProxyCommand ssh hjy@ali -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host gfw 
+  HostName  23.105.196.121
+  Port      26636
+  User      gfw
+  IdentityFile ~/.ssh/gfw
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host gfw_jump 
+  HostName  47.52.195.5
+  Port      22
+  User      gfw
+  IdentityFile ~/.ssh/id_rsa
+  ProxyCommand ssh hjy@ali -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host bwg
+  HostName 23.105.196.121
+  Port      26636
+  User      root
+  IdentityFile ~/.ssh/id_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+
+# datagrand
+Host jump
+  HostName  jumper.datagrand.com
+  Port      58422
+  User      haojunyu
+  IdentityFile ~/.ssh/id_rsa
+# dg_bg
+Host bg_jump
+  HostName  103.229.214.112
+  Port      22
+  User      haojunyu
+  IdentityFile ~/.ssh/id_rsa
+Host bg_ws
+  HostName  10.100.11.17
+  Port      22
+  User      duser
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh haojunyu@bg_jump -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+# dg_idps
+Host idps_jump
+  HostName  idps-jumper.datagrand.cn
+  Port      58422
+  User      haojunyu
+  IdentityFile ~/.ssh/dg_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host idps_test
+  HostName  10.0.1.20
+  Port      22
+  User      test
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh haojunyu@idps_jump -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host idps_proc
+  HostName  10.0.1.5
+  Port      22
+  User      product
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh haojunyu@idps_jump -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+
+# dg_dl
+Host dl
+  HostName dl.datagrand.net
+  Port      1111
+  User      haojunyu
+  IdentityFile ~/.ssh/id_rsa
+# dg_wifi
+# dg_wifi_offline
+Host ws
+  HostName 47.101.34.13
+  #InnerIp 172.19.219.242
+  Port      22
+  User      siterecoffline
+  IdentityFile ~/.ssh/dg_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+  ForwardAgent yes
+  #AddKeysToAgent yes
+  #UseKeychain yes
+# dg_wifi_ltr
+Host ltr1
+  HostName 172.19.219.253
+  #OuterIp 139.224.23.221
+  Port      22
+  User      siterecoffline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host ltr2
+  HostName 172.19.220.5
+  Port      22
+  User      siterecoffline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host ltr3
+  HostName 172.19.220.7
+  #OuterIp 106.14.149.110
+  Port      22
+  User      siterecoffline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+
+# dg_wifi_nearline
+Host rec_nl1
+  HostName 172.19.219.246
+  #OuterIp 139.224.23.152
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_nl2
+  HostName 172.19.219.243
+  #OuterIp 139.224.22.197
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_nl3
+  HostName 172.19.219.242
+  #OuterIp 47.101.34.13
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_nl4
+  HostName 172.19.49.72
+  #OuterIp 47.101.51.100
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_nl5
+  HostName 172.19.219.249
+  #OuterIp 106.14.161.84
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_nl6
+  HostName 172.19.219.248
+  #OuterIp 47.100.102.149
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_nl7
+  HostName 172.19.219.250
+  #OuterIp 101.132.243.114
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+
+# dg_wifi_online
+Host rec_oli
+  HostName 47.101.52.236
+  Port      22
+#  User      siterecoffline
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+Host rec_oli1
+  HostName 172.19.219.244
+  #OuterIp 47.100.42.175
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_oli2
+  HostName 172.19.219.247
+  #OuterIp 101.132.133.62
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_oli3
+  HostName 172.19.219.245
+  #OuterIp 101.132.128.104
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_oli4
+  HostName 172.19.220.0
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_oli5
+  HostName  172.19.219.254
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_oli6
+  HostName  172.19.219.255
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_oli7
+  HostName  172.19.219.242
+  #OuterIp  47.101.34.13
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_oli8
+  HostName  172.19.220.1
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_oli9
+  HostName  172.19.220.2
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_oli10
+  HostName  172.19.220.3
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_oli11
+  HostName  172.19.219.253
+  #OuterIp 139.224.23.221
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_oli12
+  HostName  172.19.220.5
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_oli13
+  HostName  172.19.220.7
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host ltroli
+  HostName 172.19.220.7
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+
+# dg_nginx
+Host rec_ng
+  HostName  172.19.49.71
+  #OuterIp  47.101.52.236
+  Port      22
+  User      siterecoffline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_ng1
+  HostName 172.19.220.0
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_ng2
+  HostName  172.19.219.254
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_ng3
+  HostName  172.19.220.3
+  Port      22
+  User      sitereconline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host rec_ng4
+  HostName 172.19.220.7
+  #OuterIp 106.14.149.110
+  Port      22
+  User      siterecoffline
+  IdentityFile ~/.ssh/dg_rsa
+  ProxyCommand ssh siterecoffline@ws -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+
+# dg_unknow
+Host common
+  HostName 10.165.122.108
+  Port      22
+  User      siterecoffline
+  IdentityFile ~/.ssh/id_rsa
+  ProxyCommand ssh haojunyu@jump -W %h:%p 2>/dev/null
+Host tmp
+  HostName 10.171.118.37
+  Port      22
+  User      siterecoffline
+  IdentityFile ~/.ssh/id_rsa
+  ProxyCommand ssh haojunyu@jump -W %h:%p 2>/dev/null
+
+# dg_suyan
+Host sy_test
+  HostName 10.139.19.174
+  Port      22
+  User      root
+  IdentityFile ~/.ssh/tmp_rsa
+  ProxyCommand ssh audit@sy -W %h:%p 2>/dev/null
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host sy
+  HostName 10.154.9.131
+  Port     22
+  User     audit
+  IdentityFile ~/.ssh/dg_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host sy2
+  HostName 10.154.9.132
+  Port     22
+  User     audit
+  IdentityFile ~/.ssh/dg_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host sy_idps
+  HostName 10.154.9.137
+  Port     22
+  User     audit
+  IdentityFile ~/.ssh/dg_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host sy3
+  HostName 10.154.9.133
+  Port     22
+  User     audit
+  IdentityFile ~/.ssh/dg_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host sy4
+  HostName 10.154.9.134
+  Port     22
+  User     audit
+  IdentityFile ~/.ssh/dg_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host sy5
+  HostName 10.139.19.155
+  Port     22
+  User     root
+  IdentityFile ~/.ssh/dg_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host sy6
+  HostName 10.154.9.136
+  Port     22
+  User     root
+  IdentityFile ~/.ssh/dg_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
+Host sy7
+  HostName 10.154.9.137
+  Port     22
+  User     audit
+  IdentityFile ~/.ssh/dg_rsa
+  ServerAliveInterval 10
+  ServerAliveCountMax 3
