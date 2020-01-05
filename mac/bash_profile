@@ -17,8 +17,12 @@ alias ll='ls -lhrt'
 
 # User specific definitions
 export EDITOR="vim"   # for crontab -e in mac
-export HOMEBREW_GITHUB_API_TOKEN="b27b037b6f57b07a7c3394a6d0695120311d45aa"
+export HOMEBREW_GITHUB_API_TOKEN="de852304b59fa179d5f98936e7131cbc07929ef4"
 export PATH="/usr/local/sbin:/usr/local/opt/openssl/bin:/usr/local/anaconda3/bin:/usr/local/opt/icu4c/sbin:$PATH"
+
+export GOPATH="${HOME}/go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH=$PATH:${GOPATH}/bin:$GOROOT/bin
 
 # virtualenvwrapper配置
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
@@ -41,3 +45,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
+# client env manager
+alias backup="sh /Users/haojunyu/Datagrand/client_env_manager/deploy/backup.sh"
+alias load_images="sh /Users/haojunyu/Datagrand/client_env_manager/deploy/load_images.sh"
+alias pack_all_env="sh /Users/haojunyu/Datagrand/client_env_manager/deploy/pack_all_env.sh"
+alias start_env="sh /Users/haojunyu/Datagrand/client_env_manager/deploy/start_env.sh"
+alias stop_env="sh /Users/haojunyu/Datagrand/client_env_manager/deploy/stop_env.sh"
+alias update_client_env="sh /Users/haojunyu/Datagrand/client_env_manager/deploy/update_client_env.sh"

@@ -1,0 +1,17 @@
+
+=====================================================================
+Welcome to the Docker container for the Common coder.
+
+This container contains some common tools for coder,such as
+git, wget which can get resource from internet;
+unzip, libarchive-dev, vim which can manage and edit file
+autoconf, automake, libtool, build-essential which can compile source
+python2.7, python-pip which support python coder
+
+You can also install any additional system dependencies with
+> apt install PACKAGE_NAME
+
+And Python dependencies with
+> pip install PACKAGE_NAME
+=====================================================================
+

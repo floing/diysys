@@ -16,6 +16,8 @@ RUN apt-get install -yq htop git wget \
                         libtool build-essential unzip \
                         libarchive-dev vim
 
+# bert
+RUN apt install python3-dev python3-pip  && pip3 install --user --upgrade tensorflow 
 # configure vim
 ADD vimrc /
 RUN mv /vimrc ~/.vimrc
