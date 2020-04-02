@@ -1,0 +1,12 @@
+[Unit]
+Description=alertmanager
+After=network.target
+[Service]
+Type=simple
+User=prometheus
+WorkingDirectory=/usr/local/alertmanager
+ExecStart=/usr/local/alertmanager/alertmanager
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target

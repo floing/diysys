@@ -1,0 +1,17 @@
+[Unit]
+Description=Supervisor process control system for UNIX
+Documentation=http://supervisord.org
+After=network.target 
+ConditionPathExists=/home/ubuntu/.local/bin/supervisord
+
+[Service]
+User=ubuntu
+ExecStart=/home/ubuntu/.local/bin/supervisord -n -c /home/ubuntu/.local/etc/supervisord.conf
+ExecStop=/home/ubuntu/.local/bin/supervisorctl $OPTIONS shutdown
+ExecReload=/home/ubuntu/.local/bin/supervisorctl $OPTIONS reload
+KillMode=process
+Restart=on-failure
+RestartSec=50s
+
+[Install]
+WantedBy=multi-user.target

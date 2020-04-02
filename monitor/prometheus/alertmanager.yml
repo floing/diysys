@@ -1,0 +1,46 @@
+global:
+  resolve_timeout: 5m
+  wechat_api_url: 'https://qyapi.weixin.qq.com/cgi-bin/'
+  wechat_api_secret: 'iqPMqF_tM33sdDIkp0D0HtuUg1H6iEWwOu0a-2Dxc_I'
+  wechat_api_corp_id: 'wwa25e53e4f17e20b8'
+  smtp_smarthost: 'smtp.exmail.qq.com:587'
+  smtp_from: 'yunwei@haojunyu.com'
+  smtp_auth_username: 'yunwei@haojunyu.com'
+  smtp_auth_password: '4SXGoooF4RNPmhyr'
+
+templates:
+  - /usr/local/alertmanager/template/*.tmpl
+
+route:
+  group_by: ['alertname']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
+  receiver: 'wechat_op'
+  #receiver: 'email_op'
+  #routes:
+  #- receiver: 'wechat_op'
+  #  continue: true
+
+receivers:
+- name: 'web.hook'
+  webhook_configs:
+  - url: 'http://127.0.0.1:5001/'
+- name: 'wechat_op'
+  wechat_configs:
+  - send_resolved: true
+    #to_user: 'HaoJunYu'
+    to_party: '3'
+    message: '{{ template "wechat.default.message" . }}'
+    agent_id: '1000003'
+- name: 'email_op'
+  email_configs:
+  - send_resolved: true
+    to: 'haojunyu@haojunyu.com'
+
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'dev', 'instance']
