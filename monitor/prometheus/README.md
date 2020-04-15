@@ -1,4 +1,4 @@
-# prometheus
+# 基于 prometheus 的监控系统
 google的监控系统
 
 Prometheus是一套开源监控系统，使用Go语言开发，是Google BorgMon监控系统的类似实现。
@@ -55,6 +55,19 @@ systemctl start node_exporter
 
 # 配置 prometheus 文件
 ```
+
+* [配置及玩法](./node_exporter.md)
+
+主要介绍 node_exporter 的相关配置，并且使用其进行常见的监控。
+
+## 可选 exporter
+![常用的exporter](imgs/exporter.png)
+### 进程监控 process_exporter
+### 自定义监控  pushgateway
+### 日志监控   mtail
+### 容器监控 cAdvisor
+### java程序 jmx_exporter
+
 
 
 ## alertmanager
